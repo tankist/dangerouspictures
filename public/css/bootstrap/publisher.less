@@ -1,0 +1,83 @@
+@import "less/bootstrap.less";
+
+@import "less/font-awesome.less";
+
+/*@import "variables.less";
+@import "bootswatch.less";*/
+
+@iconSpritePath:          "../images/glyphicons-halflings.png";
+@iconWhiteSpritePath:     "../images/glyphicons-halflings-white.png";
+
+@minimalApplicationBodyHeight: 400px;
+
+.entire-absolute-block() {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+table {
+    td, th {
+        &.center {
+            text-align: center;
+        }
+    }
+}
+
+.form-actions.center {
+    text-align: center;
+}
+
+.icon-loading {
+    background-image: url("/images/loading.gif");
+    background-position: 0 2px;
+}
+.loader-wrapper {
+    height: 150px;
+    padding-left: 50%;
+    padding-top: 25%;
+    position: relative;
+}
+
+.login-form {
+    a.forgot {
+        line-height: 18px;
+        padding-top: 5px;
+    }
+}
+
+header {
+    .container.login {
+        padding-top: 20px;
+    }
+}
+
+.help-block, .help-inline {
+    font-size: 80%;
+}
+
+.friends {
+    .user {
+        margin: 10px 0;
+        border: 1px solid #dbdbdb;
+        padding: 5px;
+        color: #3d3c3c;
+        #gradient > .vertical(@white, #f5f5f5);
+        img {
+            margin-right: 5px;
+        }
+        span.name, .invite {
+            line-height: 50px;
+        }
+        .invite {
+            span {
+                border-bottom: 1px dotted #3d3c3c;
+            }
+            .pull-right;
+            color: #3d3c3c;
+            text-decoration: none;
+        }
+    }
+}

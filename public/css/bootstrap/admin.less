@@ -1,0 +1,65 @@
+@import "less/bootstrap.less";
+
+@iconSpritePath:          "../images/glyphicons-halflings.png";
+@iconWhiteSpritePath:     "../images/glyphicons-halflings-white.png";
+
+@minimalApplicationBodyHeight: 400px;
+
+.entire-absolute-block() {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.container {
+    &.application {
+        .entire-absolute-block();
+        right: inherit;
+        left: 50%;
+        margin-left: -(@gridRowWidth / 2);
+        margin-top: 50px;
+        margin-bottom: 30px;
+
+        .wrapper {
+            .entire-absolute-block();
+            min-height: @minimalApplicationBodyHeight;
+
+            .sidebar {
+                .entire-absolute-block();
+                overflow: auto;
+            }
+
+            .body {
+                .entire-absolute-block();
+                #grid > .core > .offset(4);
+                position: relative;
+                max-height: 100%;
+            }
+        }
+    }
+}
+
+table {
+    td, th {
+        &.center {
+            text-align: center;
+        }
+    }
+}
+
+.form-actions.center {
+    text-align: center;
+}
+
+.icon-loading {
+    background-image: url("../images/loading.gif");
+    background-position: 0 2px;
+}
+.loader-wrapper {
+    height: 150px;
+    padding-left: 50%;
+    padding-top: 25%;
+    position: relative;
+}
