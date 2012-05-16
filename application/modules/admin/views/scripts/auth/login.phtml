@@ -1,4 +1,39 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Auth</b> and script/action name <b>login</b></p>
-</div>
+<div class="login-form">
+    <h2>Back-end Login</h2>
+    <form method="post" class="form-inline" action="/users/auth/login"
+      enctype="application/x-www-form-urlencoded">
+
+    <input type="hidden" id="return" value="" name="return">
+
+    <div class="control-group">
+        <div class="controls">
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-envelope"></i></span><input type="text" class="input-xlarge"
+                                                                                placeholder="Email:" value="" id="email"
+                                                                                name="email"></div>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-key"></i></span><input type="password" class="input-xlarge"
+                                                                           placeholder="Password:" value=""
+                                                                           id="password" name="password"></div>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls pull-right">
+            <button class="btn" value="Forget Password" type="submit" id="forget" name="submit">Forget Password</button>
+            <button class="btn btn-primary" value="Login" type="submit" id="submit" name="submit">Login</button>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <label class="checkbox pull-left">
+                <label class="checkbox"><input type="hidden" value="0" name="remember">
+                    <input type="checkbox" value="1"
+                           id="remember"
+                           name="remember"></label>Remember</label>
+        </div>
+    </div>
+</form></div>

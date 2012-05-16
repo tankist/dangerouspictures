@@ -15,7 +15,7 @@ class Admin_AuthController extends Zend_Controller_Action
 
     public function loginAction()
     {
-        // action body
+        $this->_helper->layout()->setLayout('login');
     }
 
     public function logoutAction()

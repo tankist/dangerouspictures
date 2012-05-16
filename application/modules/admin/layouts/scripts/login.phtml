@@ -2,41 +2,11 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <?php echo $this->headLink()->appendStylesheet('/css/admin.css') ?>
+    <?php echo $this->headTitle() ?>
 </head>
 <body>
-
-<form method="post" class="login-form pull-right form-inline" action="/users/auth/login"
-      enctype="application/x-www-form-urlencoded">
-
-    <input type="hidden" id="return" value="" name="return">
-
-    <div class="control-group">
-        <div class="controls">
-            <div class="input-prepend">
-                <span class="add-on"><i class="icon-envelope"></i></span>
-                <input type="text" class="input-medium"
-                       placeholder="Email:" value="" id="email"
-                       name="email"></div>
-            <div class="input-prepend">
-                <span class="add-on"><i class="icon-key"></i></span>
-                <input type="password" class="input-medium"
-                       placeholder="Password:" value=""
-                       id="password" name="password"></div>
-            <button class="btn btn-primary" value="Login" type="submit" id="submit" name="submit">Login</button>
-        </div>
-    </div>
-    <div class="control-group">
-        <div class="controls">
-            <label class="checkbox pull-left">
-                <label class="checkbox"><input type="hidden" value="0" name="remember">
-                    <input type="checkbox" value="1"
-                           id="remember"
-                           name="remember"></label>Remember</label>
-            <a href="#forget" class="pull-right forget">Forgot password</a>
-        </div>
-    </div>
-</form>
-
+<?php echo $this->layout()->content ?>
+<?php echo $this->headScript()->prependFile('/js/jquery/jquery.min.js') ?>
 </body>
 </html>

@@ -21,7 +21,7 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
      * @var array
      */
     protected $_noAuth = array(
-        'module' => 'users',
+        'module' => 'admin',
         'controller' => 'auth',
         'action' => 'login'
     );
@@ -31,7 +31,7 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
      * @var array
      */
     protected $_noActivated = array(
-        'module' => 'users',
+        'module' => 'admin',
         'controller' => 'auth',
         'action' => 'reactivation'
     );
@@ -41,7 +41,7 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
      * @var array
      */
     protected $_noAcl = array(
-        'module' => 'users',
+        'module' => 'admin',
         'controller' => 'auth',
         'action' => 'login'
     );
