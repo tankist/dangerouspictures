@@ -20,7 +20,8 @@ class Admin_AuthController extends Zend_Controller_Action
 
     public function logoutAction()
     {
-        // action body
+        Zend_Auth::getInstance()->clearIdentity();
+        $this->_redirect($this->_helper->url('login'));
     }
 
     public function forgetAction()
