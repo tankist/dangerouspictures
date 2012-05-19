@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <?php echo $this->headLink()->appendStylesheet('/css/admin.min.css') ?>
+    <?php echo $this->headTitle() ?>
+</head>
+<body>
+<div class="container">
+
+    <?php echo $this->layout()->content ?>
+
+</div>
+<?php echo $this->headScript()
+    ->prependFile('/js/jquery/jquery.form.js')
+    ->prependFile('/js/bootstrap.min.js')
+    ->prependFile('/js/jquery/jquery.min.js') ?>
+</body>
+</html>

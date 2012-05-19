@@ -2,7 +2,8 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <title>DangerousPictures</title>
+    <?php echo $this->headLink()->appendStylesheet('/css/admin.min.css') ?>
+    <?php echo $this->headTitle() ?>
 </head>
 <body>
 <header>
@@ -46,6 +47,8 @@
 <?php echo $this->layout()->content ?>
 
 </div>
-
+<?php echo $this->headScript()
+    ->prependFile('/js/jquery/jquery.form.min.js')
+    ->prependFile('/js/jquery/jquery.min.js') ?>
 </body>
 </html>

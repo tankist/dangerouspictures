@@ -23,17 +23,9 @@ $acl->addResource(new Zend_Acl_Resource('backend'));
 
 // Resources
 // format: <module>.<controller>
-$acl->addResource(new Zend_Acl_Resource('applications'), 'publisher');
-$acl->addResource(new Zend_Acl_Resource('applications.register'), 'developer');
-$acl->addResource(new Zend_Acl_Resource('dashboard'), 'publisher');
 $acl->addResource(new Zend_Acl_Resource('default'), 'index');
-$acl->addResource(new Zend_Acl_Resource('test'), 'index');
-$acl->addResource(new Zend_Acl_Resource('statistics'), 'publisher');
-$acl->addResource(new Zend_Acl_Resource('users'), 'publisher');
-$acl->addResource(new Zend_Acl_Resource('users.auth'), 'index');
-$acl->addResource(new Zend_Acl_Resource('users.oauth'), 'index');
-$acl->addResource(new Zend_Acl_Resource('account'), 'publisher');
 $acl->addResource(new Zend_Acl_Resource('admin'), 'backend');
+$acl->addResource(new Zend_Acl_Resource('admin.root'), 'index');
 
 // Access rights
 
