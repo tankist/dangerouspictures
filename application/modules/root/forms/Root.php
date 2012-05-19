@@ -11,10 +11,12 @@ class Root_Form_Root extends Sch_Form
 
         $password = new Zend_Form_Element_Password('password');
         $password->setRequired(true);
+        $password->addValidator(new Zend_Validate_StringLength(6));
 
         $confirm = new Zend_Form_Element_Password('confirm');
         $confirm->setRequired(true);
         $confirm->addValidator(new Sch_Validate_PasswordConfirm('password'));
+        $confirm->addValidator(new Zend_Validate_StringLength(6));
 
         $this->addElements(array($email, $password, $confirm));
     }

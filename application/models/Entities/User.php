@@ -199,4 +199,14 @@ class User extends AbstractEntity
         return $this;
     }
 
+    /**
+     * @ORM\PrePersist
+     * @return User
+     */
+    public function prePersist()
+    {
+        $this->created = new \DateTime();
+        return $this;
+    }
+
 }

@@ -3,6 +3,15 @@
 class Root_ErrorController extends Zend_Controller_Action
 {
 
+    public $ajaxable = array(
+        'error' => array('json')
+    );
+
+    public function init()
+    {
+        $this->_helper->getHelper('AjaxContext')->initContext();
+    }
+
     public function errorAction()
     {
         $errors = $this->_getParam('error_handler');
@@ -25,7 +34,7 @@ class Root_ErrorController extends Zend_Controller_Action
                 // application error
                 $this->getResponse()->setHttpResponseCode(500);
                 $priority = Zend_Log::CRIT;
-                $this->view->message = 'Application error';
+                $this->view->message = 'Application error: ' . $errors->exception->getMessage();
                 break;
         }
 

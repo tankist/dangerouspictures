@@ -7,8 +7,14 @@ class Root_IndexController extends Zend_Controller_Action
         'save' => array('json')
     );
 
+    /**
+     * @var Service_User
+     */
+    protected $_service;
+
     public function init()
     {
+        $this->_service = new Service_User($this->_helper->Em());
         $this->_helper->getHelper('AjaxContext')->initContext();
     }
 
@@ -26,7 +32,11 @@ class Root_IndexController extends Zend_Controller_Action
         $request = $this->getRequest();
         $form = new Root_Form_Root();
         if ($request->isPost() && $form->isValid($request->getPost())) {
-
+            /** @var $user \Entities\User */
+            $user = $this->_service->create();
+            $user->populate($form->getValues());
+            $user->setRole(Sch_Acl_Roles::ADMIN);
+            $this->_service->save($user);
         }
         else {
             $this->view->error = $form->getMessages();
