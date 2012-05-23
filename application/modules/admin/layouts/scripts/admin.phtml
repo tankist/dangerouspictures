@@ -11,31 +11,10 @@
         <div class="navbar-inner">
             <div class="container">
                 <a class="brand" href="#">DangerousPictures</a>
-                <ul class="nav">
-                    <li>
-                        <a href="/admin/categories/index/page">Categories</a>
-                    </li>
-                    <li>
-                        <a href="/admin/countries/index/page">Countries</a>
-                    </li>
-                    <li>
-                        <a href="/admin/sources/index/page">Sources</a>
-                    </li>
-                    <li>
-                        <a href="/admin/filters/index/page">Filters</a>
-                    </li>
-                    <li>
-                        <a href="/admin/messages/index/page">Messages</a>
-                    </li>
-                </ul>
+                <?php echo $this->navigation()->menu($this->layout()->navigation)->setUlClass('nav')?>
                 <ul class="nav pull-right locales">
-                    <li class="dropdown">
-                        <a href="#locale" class="dropdown-toggle" data-toggle="dropdown">Locale&nbsp;<b
-                            class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/admin/locale/en_US">US</a></li>
-                            <li><a href="/admin/locale/de">DE</a></li>
-                        </ul>
+                    <li>
+                        <a href="<?php echo $this->url(array(), 'logout') ?>">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -48,7 +27,7 @@
 
 </div>
 <?php echo $this->headScript()
-    ->prependFile('/js/jquery/jquery.form.min.js')
+    ->prependFile('/js/jquery/jquery.form.js')
     ->prependFile('/js/jquery/jquery.min.js') ?>
 </body>
 </html>

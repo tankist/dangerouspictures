@@ -81,7 +81,9 @@
           <apisDirectory enabled="false"/>
           <configsDirectory enabled="false"/>
           <controllersDirectory/>
-          <formsDirectory enabled="false"/>
+          <formsDirectory>
+            <formFile formName="Login"/>
+          </formsDirectory>
           <layoutsDirectory enabled="false"/>
           <modelsDirectory/>
           <viewsDirectory>

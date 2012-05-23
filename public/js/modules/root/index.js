@@ -24,7 +24,7 @@
                     form
                         .find('.control-group.error').removeClass('error').end()
                         .find('.help-inline').remove().end();
-                    if ($.isPlainObject(data.error())) {
+                    if ($.isPlainObject(data.error)) {
                         $.each(data.error, function (key, value) {
                             var $input = form.find('input[name=' + key + ']')
                                 .closest('.control-group').addClass('error').end();
