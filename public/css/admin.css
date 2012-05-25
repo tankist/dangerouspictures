@@ -4695,54 +4695,16 @@ li[class*=" icon-"].icon-large:before {
 .icon-lemon:before {
   content: "\f094";
 }
-.container.application {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  right: inherit;
-  left: 50%;
-  margin-left: -470px;
-  margin-top: 50px;
-  margin-bottom: 30px;
-}
-.container.application .wrapper {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  min-height: 400px;
-}
-.container.application .wrapper .sidebar {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  overflow: auto;
-}
-.container.application .wrapper .body {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin-left: 340px;
-  position: relative;
-  max-height: 100%;
-}
 table td.center,
 table th.center {
   text-align: center;
 }
+table td.vcenter,
+table th.vcenter {
+  vertical-align: middle;
+}
 .form-actions.center {
   text-align: center;
-}
-.icon-loading {
-  background-image: url("../images/loading.gif");
-  background-position: 0 2px;
 }
 .loader-wrapper {
   height: 150px;
@@ -4753,4 +4715,19 @@ table th.center {
 .login-form {
   width: 307px;
   margin: 250px auto 0;
+}
+.oh {
+  overflow: hidden;
+}
+.down-btn-container {
+  height: 28px;
+}
+.down-btn-container.up {
+  margin-bottom: 5px;
+}
+.down-btn-container a.btn {
+  display: block;
+}
+.vmargin {
+  margin-top: 20px;
 }

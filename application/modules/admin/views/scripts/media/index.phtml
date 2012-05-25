@@ -1,4 +1,62 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Media</b> and script/action name <b>index</b></p>
+<div class="row vmargin">
+    <div class="span2 pull-right">
+        <div class="btn-group pull-right">
+            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Add...<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="/image">Image</a></li>
+                <li><a href="/video">Video</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row vmargin _hide image">
+</div>
+<div class="row vmargin _hide video span4" style="float: none; margin: auto;">
+    <form method="post" action="/save/video" class="form-vertical">
+        <div class="control-group">
+            <label for="video-url" class="control-label">URL: </label>
+            <div class="controls"><input type="text" class="span4" id="video-url" name="url"></div>
+        </div>
+        <ul class="thumbnails">
+            <li>
+                <a class="thumbnail" href="#">
+                    <img alt="" src="http://placehold.it/290x180">
+                </a>
+            </li>
+        </ul>
+    </form>
+    <div style="overflow: hidden;"><div class="actions pull-right">
+        <a class="btn btn-success" href="#preview">Preview</a>
+        <a class="btn" href="#change">Change Thumbnail</a>
+        <a class="btn btn-primary" href="#save">Save</a>
+    </div></div>
+    <hr>
+</div>
+<div class="row vmargin">
+    <table class="table table-bordered">
+        <tr>
+            <th class="span1 center">#</th>
+            <th class="span3">Thumbnail</th>
+            <th class="span6">Path</th>
+            <th class="span2 center">Actions</th>
+        </tr>
+        <tr>
+            <td class="span1 center">
+                <div class="down-btn-container up"><a class="btn icon-arrow-up" href="#up"></a></div>
+                <div class="down-btn-container down"><a class="btn icon-arrow-down" href="#down"></a></div>
+            </td>
+            <td>
+                <ul class="thumbnails">
+                    <li><a href="#" class="thumbnail">
+                        <img src="http://placehold.it/100x75" alt="">
+                    </a></li>
+                </ul>
+            </td>
+            <td></td>
+            <td class="center vcenter">
+                <a class="btn btn-large " href="#edit"><i class="icon-edit"></i></a>
+                <a class="btn btn-large btn-danger" href="#delete"><i class="icon-trash"></i></a>
+            </td>
+        </tr>
+    </table>
 </div>
