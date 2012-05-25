@@ -94,5 +94,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $router = $front->getRouter();
     }
 
+    protected function _initThumbnails()
+    {
+        $options = $this->getOption('thumbnails');
+        foreach ($options as $type => $size) {
+
+        }
+
+    }
+
 }
 
