@@ -3,34 +3,56 @@
         <div class="btn-group pull-right">
             <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Add...<span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="/image">Image</a></li>
-                <li><a href="/video">Video</a></li>
+                <li><a data-toggle="image" href="/image">Image</a></li>
+                <li><a data-toggle="vimeo" href="/vimeo">Vimeo Video</a></li>
             </ul>
         </div>
     </div>
 </div>
-<div class="row vmargin _hide image">
+<div class="add row vmargin hide image">
+    <div class="span4 offset4">
+        <form action="/save/image" class="image">
+            <div class="control-group">
+                <label for="image" class="control-label">Image:</label>
+
+                <div class="controls"><input type="file" class="input-file" id="image" name="url"></div>
+            </div>
+            <div class="control-group">
+                <div class="actions pull-right">
+                    <a class="btn cancel" href="#cancel">Cancel</a>
+                    <a class="btn btn-primary save" href="#save">Save</a>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
-<div class="row vmargin _hide video span4" style="float: none; margin: auto;">
-    <form method="post" action="/save/video" class="form-vertical">
-        <div class="control-group">
-            <label for="video-url" class="control-label">URL: </label>
-            <div class="controls"><input type="text" class="span4" id="video-url" name="url"></div>
-        </div>
-        <ul class="thumbnails">
-            <li>
-                <a class="thumbnail" href="#">
-                    <img alt="" src="http://placehold.it/290x180">
-                </a>
-            </li>
-        </ul>
-    </form>
-    <div style="overflow: hidden;"><div class="actions pull-right">
-        <a class="btn btn-success" href="#preview">Preview</a>
-        <a class="btn" href="#change">Change Thumbnail</a>
-        <a class="btn btn-primary" href="#save">Save</a>
-    </div></div>
-    <hr>
+<div class="add row vmargin hide vimeo">
+    <div class="span4 offset4">
+        <form method="post" action="/save/vimeo" class="vimeo">
+            <div class="control-group">
+                <label for="video-url" class="control-label">URL:</label>
+
+                <div class="controls"><input type="text" class="span4" id="video-url" name="url"></div>
+            </div>
+            <div class="control-group thumbnails-container hide">
+                <a class="btn pull-right change-thumb" href="#preview"><i class="icon-camera"></i></a>
+                <ul class="thumbnails">
+                    <li>
+                        <a class="thumbnail" href="#">
+                            <img alt="" src="http://placehold.it/200x150">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="control-group">
+                <div class="actions pull-right">
+                    <a class="btn preview" href="#preview">Preview</a>
+                    <a class="btn cancel" href="#cancel">Cancel</a>
+                    <a class="btn btn-primary save" href="#save">Save</a>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 <div class="row vmargin">
     <table class="table table-bordered">
@@ -60,3 +82,19 @@
         </tr>
     </table>
 </div>
+<div id="mediaModal" class="modal hide fade">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>&nbsp;</h3>
+    </div>
+    <div class="modal-body" align="center"></div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+    </div>
+</div>
+<script type="text/html" id="vimeoPreview">
+    <iframe src="http://player.vimeo.com/video/{{=it.vimeo_id}}?title=0&byline=0&portrait=0&color=3EFFDA" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+</script>
+<?php $this->headScript()
+    ->appendFile('/js/doT.js')
+    ->appendFile('/js/modules/media/index.js') ?>
