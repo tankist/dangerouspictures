@@ -23,17 +23,9 @@ class Service_Media extends Sch_Service_Abstract
         return new \Entities\Video();
     }
 
-    /**
-     * @return Entities\Thumbnail
-     */
-    public function createThumbnail()
-    {
-        return new \Entities\Thumbnail();
-    }
-
     public function getAll()
     {
-        return $this->getRepository()->findBy(array(), 'position');
+        return $this->getRepository()->findBy(array(), array('position' => 'ASC'));
     }
 
     /**
@@ -48,6 +40,9 @@ class Service_Media extends Sch_Service_Abstract
             $client = new Zend_Rest_Client('http://vimeo.com');
             $response = $client->restGet($url);
             $data = Zend_Json::decode($response->getBody());
+            if (count($data) > 0) {
+                $data = current($data);
+            }
         } catch (Zend_Rest_Client_Exception $e) {
             throw new Sch_Service_Exception('Error on request data from Vimeo');
         } catch (Zend_Json_Exception $e) {

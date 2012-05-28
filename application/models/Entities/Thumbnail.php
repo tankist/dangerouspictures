@@ -6,7 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="thumbnails")
+ * @ORM\Table(name="thumbnails",
+ *             uniqueConstraints={
+ *                  @ORM\UniqueConstraint(name="typeMedia", columns={"media_id", "type"}),
+ *            })
  */
 class Thumbnail
 {

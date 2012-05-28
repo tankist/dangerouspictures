@@ -42,9 +42,9 @@
             });
             $vimeo.find('.save').click(function(e) {
                 e.preventDefault();
-                if (vimeo_id) {
-
-                }
+                $vimeo.find('form').on('form-submit-notify', function(form, options) {
+                    $vimeo.slideUp();
+                }).submit();
             })
         })();
 

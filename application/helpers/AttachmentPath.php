@@ -38,18 +38,13 @@ class Helper_AttachmentPath extends Zend_Controller_Action_Helper_Abstract
     {
         $path = '/';
         if (($entity instanceof AbstractEntity) && ($id = $entity->getId())) {
-            $path .= 'files' . '/';
-            if ($entity instanceof \Entities\Attachable) {
-                $path .= $entity->getAttachmentsPath() . '/';
+            $path .= 'files' . DIRECTORY_SEPARATOR;
+            if ($entitySubdir) {
+                $path .= $entitySubdir . DIRECTORY_SEPARATOR;
             }
-            else {
-                if ($entitySubdir) {
-                    $path .= $entitySubdir . '/';
-                }
-                $path .= $id . '/';
-            }
+            $path .= $id . DIRECTORY_SEPARATOR;
         } else {
-            $path .= 'files' . '/' . 'temp' . '/' . md5(time()) . '/';
+            $path .= 'files' . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR . md5(uniqid(time(), true)) . DIRECTORY_SEPARATOR;
         }
         return str_replace(DIRECTORY_SEPARATOR, '/', $path);
     }

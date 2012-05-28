@@ -55,6 +55,7 @@
     </div>
 </div>
 <div class="row vmargin">
+    <?php if (count($this->media) > 0): ?>
     <table class="table table-bordered">
         <tr>
             <th class="span1 center">#</th>
@@ -81,6 +82,9 @@
             </td>
         </tr>
     </table>
+    <?php else: ?>
+    <h2>No media files found</h2>
+    <?php endif; ?>
 </div>
 <div id="mediaModal" class="modal hide fade">
     <div class="modal-header">

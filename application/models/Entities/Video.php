@@ -16,4 +16,21 @@ class Video extends Media
      */
     protected $duration;
 
+    /**
+     * @param int $duration
+     * @return Video
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
 }
