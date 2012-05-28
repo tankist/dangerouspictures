@@ -6,29 +6,21 @@ class Helper_Attachments extends Zend_Controller_Action_Helper_Abstract
 {
 
     /**
-     * @param $files
-     * @param $attachmentsPath
-     * @param $attachmentEntityName
-     * @param null $uploadPath
+     * @param Entities\Media $attachment
+     * @param null $attachmentsPath
      * @param bool $useAutoname
      * @param bool $autoThumbnail
      * @return array
      */
-    public function upload($files, $attachmentsPath, $attachmentEntityName, $uploadPath = null, $useAutoname = false, $autoThumbnail = false)
+    public function upload(\Entities\Media $attachment, $attachmentsPath = null, $useAutoname = false, $autoThumbnail = false)
     {
-        if (!$uploadPath) {
-            $uploadPath = $attachmentsPath;
-        }
+        $files = basename($attachment->getPath());
+        $uploadPath = dirname($attachment->getPath());
         $attachments = array();
         //Создаем фильтр для переименования файлов
         $renameFilter = new Sch_Filter_File_Rename($attachmentsPath);
         $translitFilter = new Sch_Filter_Translit();
         foreach ((array)$files as $attachmentFile) {
-            /**
-             * Создаем вложение
-             * @var \Entities\AbstractAttachment $attachment
-             */
-            $attachment = new $attachmentEntityName();
             //Переименовываем файл вложения...
             $newAttachmentFile = (!$useAutoname)?$translitFilter->filter($attachmentFile):'';
             $attachmentFile = $renameFilter->setFile(
@@ -38,45 +30,13 @@ class Helper_Attachments extends Zend_Controller_Action_Helper_Abstract
                 )
             )->filter($uploadPath . DIRECTORY_SEPARATOR . $attachmentFile);
             //Задаем имя файла вложения...
-            $attachment->setFilename(basename($attachmentFile));
+            $attachment->setPath($attachmentFile);
             //Если картинка, то нужно сделать уменьшенную копию
-            if ($autoThumbnail && in_array(strtolower($attachment->getType()), array('gif', 'jpeg', 'jpg', 'png'))) {
-                $this->thumbnail(array($attachment), $attachmentsPath);
+            if (in_array(strtolower(pathinfo($attachmentFile, PATHINFO_EXTENSION)), array('gif', 'jpeg', 'jpg', 'png'))) {
+                if ($autoThumbnail) {
+                    $this->thumbnail(array($attachment), $attachmentsPath);
+                }
             }
-            $attachments[] = $attachment;
-        }
-        return $attachments;
-    }
-
-    /**
-     * @param $files
-     * @param $attachmentsPath
-     * @param $attachmentEntityName
-     * @return array
-     */
-    public function uploadPhoto($files, $attachmentsPath, $attachmentEntityName)
-    {
-        $attachments = array();
-        //Создаем фильтр для переименования файлов
-        $renameFilter = new Sch_Filter_File_Rename($attachmentsPath);
-        /**
-         * Создаем вложение
-         * @var \Entities\AbstractAttachment $attachment
-         */
-        $entity = new ReflectionClass($attachmentEntityName);
-        foreach ((array)$files as $attachmentFile) {
-            $attachment = $entity->newInstance();
-            $attachmentFile = $renameFilter->setFile(
-                array(
-                     'target' => $attachmentsPath .
-                                 DIRECTORY_SEPARATOR .
-                                 md5(uniqid('img', true)) . '.' .
-                                 pathinfo($attachmentFile, PATHINFO_EXTENSION),
-                     'overwrite' => true
-                )
-            )->filter($attachmentsPath . DIRECTORY_SEPARATOR . $attachmentFile);
-            //Задаем имя файла вложения...
-            $attachment->setFilename(basename($attachmentFile));
             $attachments[] = $attachment;
         }
         return $attachments;
@@ -110,7 +70,7 @@ class Helper_Attachments extends Zend_Controller_Action_Helper_Abstract
         $files = array();
         foreach ($photos as /** @var $photo \Entities\Image */&$photo) {
             $thumbnails = array();
-            if (($thumbSettings = \Entities\Thumbnail::getSizes())) {
+            if (($thumbSettings = \Entities\Media::getSizes())) {
                 if (empty($size) || !is_array($size)) {
                     $size = $thumbSettings;
                 }

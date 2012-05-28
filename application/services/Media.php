@@ -122,4 +122,21 @@ class Service_Media extends Sch_Service_Abstract
         return parent::save($entity);
     }
 
+    /**
+     * @param $url
+     * @param $path
+     * @return bool
+     * @throws Sch_Service_Exception
+     */
+    public function downloadVimeoThumbnail($url, $path)
+    {
+        $client = new Zend_Http_Client($url);
+        $client->setStream($path);
+        $response = $client->request(Zend_Http_Client::GET);
+        if ($response->getStatus() != 200) {
+            throw new Sch_Service_Exception('Error on downloading thumbnail');
+        }
+        return true;
+    }
+
 }

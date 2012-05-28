@@ -42,6 +42,18 @@ class Video extends \Entities\Video implements \Doctrine\ORM\Proxy\Proxy
     }
 
     
+    public function setDuration($duration)
+    {
+        $this->__load();
+        return parent::setDuration($duration);
+    }
+
+    public function getDuration()
+    {
+        $this->__load();
+        return parent::getDuration();
+    }
+
     public function getId()
     {
         if ($this->__isInitialized__ === false) {
@@ -85,18 +97,6 @@ class Video extends \Entities\Video implements \Doctrine\ORM\Proxy\Proxy
     {
         $this->__load();
         return parent::getPosition();
-    }
-
-    public function addThumbnail(\Entities\Thumbnail $thumbnail)
-    {
-        $this->__load();
-        return parent::addThumbnail($thumbnail);
-    }
-
-    public function getThumbnails()
-    {
-        $this->__load();
-        return parent::getThumbnails();
     }
 
     public function setWidth($width)
@@ -144,7 +144,7 @@ class Video extends \Entities\Video implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'path', 'position', 'width', 'height', 'thumbnails', 'duration');
+        return array('__isInitialized__', 'id', 'path', 'position', 'width', 'height', 'duration');
     }
 
     public function __clone()

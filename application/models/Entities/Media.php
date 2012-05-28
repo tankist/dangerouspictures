@@ -47,10 +47,9 @@ class Media extends AbstractEntity
     protected $height;
 
     /**
-     * @var Thumbnail[]
-     * @ORM\OneToMany(targetEntity="Thumbnail", mappedBy="media", cascade={"all"})
+     * @var array
      */
-    protected $thumbnails;
+    protected static $_sizes = array();
 
     /**
      * @return int
@@ -115,25 +114,6 @@ class Media extends AbstractEntity
     }
 
     /**
-     * @param Thumbnail $thumbnail
-     * @return Media
-     */
-    public function addThumbnail(Thumbnail $thumbnail)
-    {
-        $this->thumbnails[] = $thumbnail;
-        $thumbnail->setMedia($this);
-        return $this;
-    }
-
-    /**
-     * @return Thumbnail[]
-     */
-    public function getThumbnails()
-    {
-        return $this->thumbnails;
-    }
-
-    /**
      * @param int $width
      * @return Media
      */
@@ -150,4 +130,42 @@ class Media extends AbstractEntity
     {
         return $this->width;
     }
+
+    /**
+     * @static
+     * @param $sizes
+     */
+    public static function setSizes($sizes)
+    {
+        self::$_sizes = $sizes;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getSizes()
+    {
+        return self::$_sizes;
+    }
+
+    /**
+     * @static
+     * @param $type
+     * @param $size
+     */
+    public static function setSize($type, $size)
+    {
+        self::$_sizes[$type] = $size;
+    }
+
+    /**
+     * @static
+     * @param $type
+     * @return null
+     */
+    public static function getSize($type)
+    {
+        return (array_key_exists($type, self::$_sizes)) ? self::$_sizes[$type] : null;
+    }
+
 }

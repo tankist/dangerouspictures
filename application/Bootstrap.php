@@ -97,14 +97,23 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     protected function _initThumbnails()
     {
         $options = $this->getOption('thumbnails');
-        foreach ($options as $type => $size) {
-            list($w, $h) = array_map('intval', explode('x', $size));
-            \Entities\Thumbnail::setSize($type, array(
-                'width' => $w,
-                'height' => $h
-            ));
+        $defaults = array(
+            'width' => 0,
+            'height' => 0,
+            'saveProportions' => true
+        );
+        foreach ($options as $type => $settings) {
+            if (array_key_exists('size', $settings)) {
+                list($w, $h) = array_map('intval', explode('x', $settings['size']));
+                $settings = array_merge($settings, array_filter(array(
+                    'width' => $w,
+                    'height' => $h
+                )));
+                unset($settings['size']);
+            }
+            \Entities\Media::setSize($type, array_merge($defaults, $settings));
         }
-        return \Entities\Thumbnail::getSizes();
+        return \Entities\Media::getSizes();
     }
 
 }

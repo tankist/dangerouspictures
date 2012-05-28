@@ -87,18 +87,6 @@ class Image extends \Entities\Image implements \Doctrine\ORM\Proxy\Proxy
         return parent::getPosition();
     }
 
-    public function addThumbnail(\Entities\Thumbnail $thumbnail)
-    {
-        $this->__load();
-        return parent::addThumbnail($thumbnail);
-    }
-
-    public function getThumbnails()
-    {
-        $this->__load();
-        return parent::getThumbnails();
-    }
-
     public function setWidth($width)
     {
         $this->__load();
@@ -144,7 +132,7 @@ class Image extends \Entities\Image implements \Doctrine\ORM\Proxy\Proxy
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'path', 'position', 'width', 'height', 'thumbnails');
+        return array('__isInitialized__', 'id', 'path', 'position', 'width', 'height');
     }
 
     public function __clone()

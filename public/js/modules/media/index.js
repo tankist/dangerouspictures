@@ -63,7 +63,7 @@
                 format: 'json'
             },
             success: function(data) {
-                $(this).resetForm();
+                window.location.reload();
             }
         });
 

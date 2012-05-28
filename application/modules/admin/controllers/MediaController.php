@@ -13,16 +13,10 @@ class Admin_MediaController extends Zend_Controller_Action
      */
     protected $_service;
 
-    /**
-     * @var Service_Thumbnail
-     */
-    protected $_thumbnailsService;
-
     public function init()
     {
         $em = $this->_helper->Em();
         $this->_service = new Service_Media($em);
-        $this->_thumbnailsService = new Service_Thumbnail($em);
         $this->_helper->getHelper('AjaxContext')->initContext();
         $this->_helper->navigation();
     }
@@ -50,13 +44,14 @@ class Admin_MediaController extends Zend_Controller_Action
         $media->setDuration($vimeo['duration']);
         $this->_service->save($media);
 
-        $this->_thumbnailsService->clear($media);
-
         $thumbnailsDir = $this->_helper->attachmentPath($media, 'videos');
-        $this->_thumbnailsService->attachVimeoThumbnails($media, array(
-            's' => $vimeo['thumbnail_small'],
-            'm' => $vimeo['thumbnail_medium'],
-            'b' => $vimeo['thumbnail_large']), $thumbnailsDir);
+        foreach (array(
+                     's' => $vimeo['thumbnail_small'],
+                     'm' => $vimeo['thumbnail_medium'],
+                     'b' => $vimeo['thumbnail_large']) as $type => $url) {
+            $ext = pathinfo($url, PATHINFO_EXTENSION);
+            $this->_service->downloadVimeoThumbnail($url, $thumbnailsDir . DIRECTORY_SEPARATOR . $type . '.' . $ext);
+        }
         $this->_service->save($media);
     }
 
@@ -68,22 +63,19 @@ class Admin_MediaController extends Zend_Controller_Action
             'imagesPath' => $this->_helper->attachmentPath()
         ));
         if ($request->isPost() && $form->isValid($request->getPost())) {
-            $path = $form->getValue('image');
+            $path = $form->getImagesPath() . DIRECTORY_SEPARATOR . $form->getValue('image');
             if (!($id = $form->getValue('id')) || !($image = $this->_service->getById($id))) {
                 $image = $this->_service->createImage();
             }
             $image->setPath($path);
-            foreach ($image->getThumbnails() as /** @var $thumbnail \Entities\Thumbnail */ $thumbnail) {
-                $path = $thumbnail->getPath();
-                if ($path && is_file($path) && is_writable($path)) {
-                    set_error_handler(function($code, $message) {
-                        throw new Zend_Controller_Action_Exception($message);
-                    });
-                    unlink($path);
-                    restore_error_handler();
-                }
+            if (($data = getimagesize($path))) {
+                $image->setWidth($data[0]);
+                $image->setHeight($data[1]);
             }
-            $thumbnails = $this->_helper->attachments->thumbnail($image, dirname($image->getPath()));
+            $this->_service->save($image);
+            $imagePath = $this->_helper->attachmentPath($image, 'images');
+            $this->_helper->attachments->upload($image, $imagePath, true, true);
+            $this->_service->save($image);
         }
     }
 

@@ -6,6 +6,20 @@ class Helper_AttachmentPath extends Zend_Controller_Action_Helper_Abstract
 {
 
     /**
+     * @var mixed|string
+     */
+    protected $_baseFolder = 'files';
+
+    public function init()
+    {
+        /** @var $bootstrap Bootstrap */
+        $bootstrap = $this->getActionController()->getInvokeArg('bootstrap');
+        if ($bootstrap instanceof Bootstrap && $bootstrap->hasOption('baseUploadsPath')) {
+            $this->_baseFolder = $bootstrap->getOption('baseUploadsPath');
+        }
+    }
+
+    /**
      * @param null $entity
      * @param null $entitySubdir
      * @param bool $relative
@@ -15,13 +29,13 @@ class Helper_AttachmentPath extends Zend_Controller_Action_Helper_Abstract
     {
         $path = ($relative)?'':$this->getRequest()->getServer('DOCUMENT_ROOT') . DIRECTORY_SEPARATOR;
         if (($entity instanceof AbstractEntity) && ($id = $entity->getId())) {
-            $path .= 'files' . DIRECTORY_SEPARATOR;
+            $path .= $this->getBaseFolder() . DIRECTORY_SEPARATOR;
             if ($entitySubdir) {
                 $path .= $entitySubdir . DIRECTORY_SEPARATOR;
             }
             $path .= $id . DIRECTORY_SEPARATOR;
         } else {
-            $path .= 'files' . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR . md5(uniqid(time(), true)) . DIRECTORY_SEPARATOR;
+            $path .= $this->getBaseFolder() . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR . md5(uniqid(time(), true)) . DIRECTORY_SEPARATOR;
         }
         if (!is_dir($path)) {
             mkdir($path, 0777, true);
@@ -38,13 +52,13 @@ class Helper_AttachmentPath extends Zend_Controller_Action_Helper_Abstract
     {
         $path = '/';
         if (($entity instanceof AbstractEntity) && ($id = $entity->getId())) {
-            $path .= 'files' . DIRECTORY_SEPARATOR;
+            $path .= $this->getBaseFolder() . DIRECTORY_SEPARATOR;
             if ($entitySubdir) {
                 $path .= $entitySubdir . DIRECTORY_SEPARATOR;
             }
             $path .= $id . DIRECTORY_SEPARATOR;
         } else {
-            $path .= 'files' . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR . md5(uniqid(time(), true)) . DIRECTORY_SEPARATOR;
+            $path .= $this->getBaseFolder() . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR . md5(uniqid(time(), true)) . DIRECTORY_SEPARATOR;
         }
         return str_replace(DIRECTORY_SEPARATOR, '/', $path);
     }
@@ -65,6 +79,9 @@ class Helper_AttachmentPath extends Zend_Controller_Action_Helper_Abstract
         return $this->getRealPath($entity, $entitySubdir);
     }
 
-}
+    public function getBaseFolder()
+    {
+        return $this->_baseFolder;
+    }
 
-?>
+}
