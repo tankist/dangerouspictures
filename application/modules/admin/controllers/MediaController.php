@@ -101,5 +101,20 @@ class Admin_MediaController extends Zend_Controller_Action
         $this->_service->down($media);
     }
 
+    public function deleteAction()
+    {
+        $id = $this->_getParam('id');
+        /** @var $media \Entities\Media */
+        if (!($media = $this->_service->getById($id))) {
+            throw new Zend_Controller_Action_Exception('Media file not found', 404);
+        }
+        $this->_service->delete($media);
+        $this->_redirect($this->_helper->url->url(array(
+            'module' => 'admin',
+            'controller' => 'media',
+            'action' => ''
+        ), null, true));
+    }
+
 }
 

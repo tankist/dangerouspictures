@@ -122,6 +122,30 @@ class Service_Media extends Sch_Service_Abstract
         return parent::save($entity);
     }
 
+    public function delete($entity)
+    {
+        /** @var $pathHelper Helper_AttachmentPath */
+        $pathHelper = Zend_Controller_Action_HelperBroker::getStaticHelper('AttachmentPath');
+        /** @var $attachmentsHelper Helper_Attachments */
+        $attachmentsHelper = Zend_Controller_Action_HelperBroker::getStaticHelper('Attachments');
+        if ($entity instanceof \Entities\Video) {
+            $subdir = 'videos';
+        }
+        elseif ($entity instanceof \Entities\Image) {
+            $subdir = 'images';
+        }
+        else {
+            $subdir = '';
+        }
+        if ($subdir) {
+            $path = $pathHelper->getRealPath($entity, $subdir);
+            if (is_dir($path) && is_writable($path)) {
+                $attachmentsHelper->recursiveClearFolder($path);
+            }
+        }
+        return parent::delete($entity);
+    }
+
     /**
      * @param $url
      * @param $path

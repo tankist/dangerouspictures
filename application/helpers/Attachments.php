@@ -121,10 +121,15 @@ class Helper_Attachments extends Zend_Controller_Action_Helper_Abstract
         $iterator = new RecursiveIteratorIterator(
             new RecursiveDirectoryIterator($path)
         );
+        set_error_handler(function($code, $message) {
+            restore_error_handler();
+            throw new Zend_Controller_Action_Exception($message, $code);
+        });
         foreach ($iterator as /** @var $file SplFileInfo */$file) {
-            @unlink($file->getPathname());
+            unlink($file->getPathname());
         }
-        @rmdir($path);
+        rmdir($path);
+        restore_error_handler();
     }
 
 }
