@@ -81,6 +81,16 @@
             }
         });
 
+        $('.reorder').click(function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            if (id) {
+                $.post($(this).attr('href'), {format: 'json', id: id}, function() {
+                    window.location.reload();
+                });
+            }
+        });
+
     });
 
 })(this, this.document, this.jQuery);

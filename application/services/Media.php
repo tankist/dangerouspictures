@@ -92,7 +92,7 @@ class Service_Media extends Sch_Service_Abstract
     public function down(Media $media)
     {
         $all = new \Doctrine\Common\Collections\ArrayCollection($this->getAll());
-        if ($media == $all->first()) {
+        if ($media == $all->last()) {
             return false;
         }
         /** @var $swap \Entities\Media */

@@ -5,7 +5,9 @@ class Admin_MediaController extends Zend_Controller_Action
 
     public $ajaxable = array(
         'save-vimeo' => array('json'),
-        'save-image' => array('json')
+        'save-image' => array('json'),
+        'up' => array('json'),
+        'down' => array('json')
     );
 
     /**

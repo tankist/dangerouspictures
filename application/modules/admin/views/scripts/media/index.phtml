@@ -64,9 +64,13 @@
         </tr>
         <?php foreach ($this->media as /** @var \Entities\Media $media */ $media): ?>
         <tr>
-            <td class="span1 center">
-                <div class="down-btn-container up"><a class="btn icon-arrow-up" href="#up"></a></div>
-                <div class="down-btn-container down"><a class="btn icon-arrow-down" href="#down"></a></div>
+            <td class="span1 center vcenter">
+                <div class="down-btn-container up">
+                    <a class="btn icon-arrow-up reorder" data-id="<?php echo $media->getId() ?>" href="<?php echo $this->url(array('action' => 'up')) ?>"></a>
+                </div>
+                <div class="down-btn-container down">
+                    <a class="btn icon-arrow-down reorder" data-id="<?php echo $media->getId() ?>" href="<?php echo $this->url(array('action' => 'down')) ?>"></a>
+                </div>
             </td>
             <td>
                 <ul class="thumbnails">
@@ -76,8 +80,7 @@
                 </ul>
             </td>
             <td class="center vcenter">
-                <a class="btn btn-large " href="#edit"><i class="icon-edit"></i></a>
-                <a class="btn btn-large btn-danger" href="#delete"><i class="icon-trash"></i></a>
+                <a class="btn btn-large btn-danger" href="<?php echo $this->url(array('action' => 'delete', 'id' => $media->getId())) ?>"><i class="icon-trash"></i></a>
             </td>
         </tr>
         <?php endforeach; ?>
