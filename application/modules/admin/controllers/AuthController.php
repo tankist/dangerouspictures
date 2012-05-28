@@ -20,6 +20,9 @@ class Admin_AuthController extends Zend_Controller_Action
 
     public function loginAction()
     {
+        if (Zend_Auth::getInstance()->hasIdentity()) {
+            $this->_redirect('/admin');
+        }
         /** @var $request Zend_Controller_Request_Http */
         $request = $this->getRequest();
         $form = new Admin_Form_Login(array(

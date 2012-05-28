@@ -98,9 +98,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $options = $this->getOption('thumbnails');
         foreach ($options as $type => $size) {
-
+            list($w, $h) = array_map('intval', explode('x', $size));
+            \Entities\Thumbnail::setSize($type, array(
+                'width' => $w,
+                'height' => $h
+            ));
         }
-
+        return \Entities\Thumbnail::getSizes();
     }
 
 }

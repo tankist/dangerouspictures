@@ -39,8 +39,33 @@
                         .find('.modal-body').html(previewTemplate({vimeo_id: vimeo_id})).end()
                         .modal();
                 }
+            });
+            $vimeo.find('.save').click(function(e) {
+                e.preventDefault();
+                if (vimeo_id) {
+
+                }
             })
         })();
+
+        (function() {
+            var $image = $('.add.image'), $form = $image.find('form');
+
+            $image.find('.save').click(function(e) {
+                e.preventDefault();
+                $form.submit();
+            })
+        })();
+
+        $('.add form').ajaxForm({
+            dataType: 'json',
+            data: {
+                format: 'json'
+            },
+            success: function(data) {
+                $(this).resetForm();
+            }
+        });
 
         $('.add a.cancel').click(function(e) {
             e.preventDefault();

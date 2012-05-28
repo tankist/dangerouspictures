@@ -11,7 +11,7 @@
 </div>
 <div class="add row vmargin hide image">
     <div class="span4 offset4">
-        <form action="/save/image" class="image">
+        <form action="<?php echo $this->url(array('action' => 'save-image', 'controller' => 'media')) ?>" class="image">
             <div class="control-group">
                 <label for="image" class="control-label">Image:</label>
 
@@ -28,7 +28,7 @@
 </div>
 <div class="add row vmargin hide vimeo">
     <div class="span4 offset4">
-        <form method="post" action="/save/vimeo" class="vimeo">
+        <form method="post" action="<?php echo $this->url(array('action' => 'save-vimeo', 'controller' => 'media')) ?>" class="vimeo">
             <div class="control-group">
                 <label for="video-url" class="control-label">URL:</label>
 
