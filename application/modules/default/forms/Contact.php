@@ -21,6 +21,19 @@ class Default_Form_Contact extends Sch_Form
         $this->addElements(array($fullname, $email, $subject, $message));
     }
 
+    public function prepareDecorators()
+    {
+        $this->setDecorators(array(
+            'FormErrors',
+            new Sch_Form_Decorator_ViewScript(array('viewScript' => 'forms/contact.phtml')),
+            'Fieldset',
+            'Form'
+        ));
+        $this->setElementDecorators(array(
+            'ViewHelperTwitter'
+        ));
+        return parent::prepareDecorators();
+    }
 
 }
 

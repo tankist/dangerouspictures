@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <?php echo $this->headLink()->appendStylesheet('/css/admin.min.css') ?>
+    <?php echo $this->headTitle() ?>
+</head>
+<body>
+<div class="container application">
+
+    <?php echo $this->flashMessages(); ?>
+
+    <?php echo $this->layout()->content ?>
+
+</div>
+</body>
+</html>

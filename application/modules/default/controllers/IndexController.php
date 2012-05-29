@@ -20,7 +20,10 @@ class Default_IndexController extends Zend_Controller_Action
 
     public function contactAction()
     {
-        $form = new Default_Form_Contact(array());
+        $form = new Default_Form_Contact(array(
+            'action' => $this->_helper->url('send')
+        ));
+        $this->view->form = $form;
     }
 
     public function sendAction()
@@ -30,7 +33,8 @@ class Default_IndexController extends Zend_Controller_Action
         $form = new Default_Form_Contact();
         if ($request->isPost() && $form->isValid($request->getPost())) {
             $me = $this->_service->getFirstRootUser();
-            $this->_helper->mailSender(
+            $this->view->assign($form->getValues());
+            $this->_helper->mailSender->emailContact(
                 $form->getValue('email'),
                 $me->getEmail(),
                 $form->getValue('subject'));
