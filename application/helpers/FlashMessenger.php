@@ -13,9 +13,12 @@ class Helper_FlashMessenger extends Zend_Controller_Action_Helper_FlashMessenger
                 $subElement = $form->getElement($name);
                 if ($subElement instanceof Zend_Form_Element) {
                     $label = $subElement->getLabel();
+                    if ($label) {
+                        $label .= ': ';
+                    }
                     $this->addMessage(array(
-                        'message' => $label . ': ' . join('; ', $elementErrors),
-                        'status' => 'fail'
+                        'message' => $label . join('; ', $elementErrors),
+                        'status' => 'error'
                     ));
                 }
             }

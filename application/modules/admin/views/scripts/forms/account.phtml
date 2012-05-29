@@ -1,0 +1,13 @@
+<fieldset>
+    <legend>Account details</legend>
+    <?php echo $this->element->password->setLabel('Account Password')->setAttrib('class', 'span6') ?>
+    <?php echo $this->element->confirm->setLabel('Confirm Account Password')->setAttrib('class', 'span6') ?>
+    <?php echo $this->element->email->setLabel('Account Email')->setAttrib('class', 'span6') ?>
+</fieldset>
+<fieldset>
+    <legend>External Connections</legend>
+    <?php echo $this->element->twitter->setLabel('Twitter Account URL')->setAttrib('class', 'span6') ?>
+    <?php echo $this->element->facebook->setLabel('Facebook Account URL')->setAttrib('class', 'span6') ?>
+    <?php echo $this->element->vimeo->setLabel('Vimeo Account URL')->setAttrib('class', 'span6') ?>
+</fieldset>
+<div class="offset4"><input class="btn btn-primary" type="submit" value="Save Changes"></div>

@@ -25,6 +25,14 @@ class Service_User extends Sch_Service_Abstract
      */
     public function getRootUsers()
     {
+        return $this->getRepository()->findBy(array('role' => Sch_Acl_Roles::ADMIN));
+    }
+
+    /**
+     * @return \Entities\User
+     */
+    public function getFirstRootUser()
+    {
         return $this->getRepository()->findOneBy(array('role' => Sch_Acl_Roles::ADMIN));
     }
 

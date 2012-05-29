@@ -23,7 +23,9 @@
 </header>
 <div class="container application">
 
-<?php echo $this->layout()->content ?>
+    <?php echo $this->flashMessages(); ?>
+
+    <?php echo $this->layout()->content ?>
 
 </div>
 <?php echo $this->headScript()

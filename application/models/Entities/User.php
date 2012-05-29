@@ -42,6 +42,24 @@ class User extends AbstractEntity
     protected $role = 0;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=35)
+     */
+    protected $twitter;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=35)
+     */
+    protected $facebook;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=35)
+     */
+    protected $vimeo;
+
+    /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
      */
@@ -169,6 +187,60 @@ class User extends AbstractEntity
     public function getRole()
     {
         return $this->role;
+    }
+
+    /**
+     * @param string $facebook
+     * @return User
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * @param string $twitter
+     * @return User
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * @param string $vimeo
+     * @return User
+     */
+    public function setVimeo($vimeo)
+    {
+        $this->vimeo = $vimeo;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVimeo()
+    {
+        return $this->vimeo;
     }
 
     /**

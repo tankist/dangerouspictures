@@ -40,6 +40,10 @@
             <controllerFile controllerName="Error">
               <actionMethod actionName="error"/>
             </controllerFile>
+            <controllerFile controllerName="Account">
+              <actionMethod actionName="index"/>
+              <actionMethod actionName="save"/>
+            </controllerFile>
           </controllersDirectory>
           <layoutsDirectory enabled="false"/>
           <modelsDirectory/>
@@ -72,6 +76,12 @@
               <viewControllerScriptsDirectory forControllerName="Error">
                 <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Account">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Account">
+                <viewScriptFile forActionName="save"/>
+              </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
@@ -83,6 +93,8 @@
           <controllersDirectory/>
           <formsDirectory>
             <formFile formName="Login"/>
+            <formFile formName="Account"/>
+            <formFile formName="Contact"/>
           </formsDirectory>
           <layoutsDirectory enabled="false"/>
           <modelsDirectory/>
@@ -198,6 +210,10 @@
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="Error">
                 <testApplicationActionMethod forActionName="index"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="Account">
+                <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="save"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

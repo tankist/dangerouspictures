@@ -18,6 +18,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         return include APPLICATION_PATH . '/configs/acl.php';
     }
 
+    protected function _initSessionNamespace()
+    {
+        $session = new Zend_Session_Namespace('DP');
+        return $session;
+    }
+
     public function _initAutoloaderNamespaces()
     {
         require_once 'Doctrine/Common/ClassLoader.php';
