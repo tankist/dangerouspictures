@@ -13,6 +13,7 @@ class Admin_AccountController extends Zend_Controller_Action
     public function init()
     {
         $this->_service = new Service_User($this->_helper->Em());
+        $this->_helper->navigation();
     }
 
     public function indexAction()

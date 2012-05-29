@@ -17,17 +17,11 @@ class Admin_Helper_Navigation extends Helper_AbstractNavigation
                     'action' => ''
                 )),
                 new Zend_Navigation_Page_Mvc(array(
-                    'label' => 'Contact Us',
+                    'label' => 'Account',
                     'module' => 'admin',
-                    'controller' => 'contact',
+                    'controller' => 'account',
                     'action' => ''
-                )),
-                new Zend_Navigation_Page_Mvc(array(
-                    'label' => 'Settings',
-                    'module' => 'admin',
-                    'controller' => 'settings',
-                    'action' => ''
-                )),
+                ))
             ));
         }
         return $this->_navigation;

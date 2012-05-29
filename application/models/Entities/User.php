@@ -43,19 +43,19 @@ class User extends AbstractEntity
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=35)
+     * @ORM\Column(type="string", length=35, nullable=true)
      */
     protected $twitter;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=35)
+     * @ORM\Column(type="string", length=35, nullable=true)
      */
     protected $facebook;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=35)
+     * @ORM\Column(type="string", length=35, nullable=true)
      */
     protected $vimeo;
 
