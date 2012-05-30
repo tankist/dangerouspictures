@@ -1,6 +1,6 @@
 (function(window, document, $) {
 
-    var vimeoEmbedScript = doT.template('<iframe src="http://player.vimeo.com/video/{{=it.vimeo_id}}" width="{{=it.width}}" height="{{=it.height}}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
+    var vimeoEmbedScript = doT.template('<div style="margin-bottom: 80px;"><iframe src="http://player.vimeo.com/video/{{=it.vimeo_id}}?api=1" width="{{=it.width}}" height="{{=it.height}}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>');
 
     $.fn.gallery = function(o) {
         var options = $.extend($.fn.gallery.defaults, o);
@@ -22,7 +22,6 @@
                             if ($a.data('width')) {
                                 $containerImage.attr('width', Math.min($a.data('width'), maxWidth));
                             }
-                            $container.find('.container').spin();
                             $containerImage.on('load', function() {
                                 $container.find('.container').html($containerImage);
                             });
@@ -39,7 +38,16 @@
                                         w /= ratio;
                                     }
                                 }
-                                $container.find('.container').html(vimeoEmbedScript($.extend({width: w, height: h || w * 9 / 16}, o)));
+                                var $iframe = $(vimeoEmbedScript($.extend({width: w, height: h || w * 9 / 16}, o)));
+                                $container.find('.container').html($iframe);
+                                if (options.slideshow) {
+                                    var player = $f($iframe.find('iframe')[0]);
+                                    player.addEvent('ready', function() {
+                                        player.addEvent('pause', resetTick);
+                                        player.addEvent('finish', initTick);
+                                        player.addEvent('play', resetTick);
+                                    });
+                                }
                             }
                     }
 
@@ -57,10 +65,14 @@
                 show($images.find('a')[currentPosition]);
             }
 
-            function initTick() {
+            function resetTick() {
                 if (timer) {
                     clearInterval(timer);
                 }
+            }
+
+            function initTick() {
+                resetTick();
                 timer = setInterval(tick, options.interval);
             }
 

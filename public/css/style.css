@@ -229,6 +229,7 @@ h4 {}
 		border-left:5px solid #051b29;
 		border-right:5px solid #051b29;
 		border-bottom:7px solid #051b29;
+        position: relative;
 		}
         .main-pic-block .container {
             text-align: center;
@@ -273,10 +274,12 @@ h4 {}
                 border:0px;
                 }
 .shadow-text {
-    position:relative;
+    position:absolute;
     background: #0a2a42;
     opacity:0.9;
-    margin-top:-164px;
+    bottom: 0;
+    left: 0;
+    right: 0;
     padding:30px 65px;
     color:#8e8d8d;
     font-size:21px;
