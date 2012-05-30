@@ -20,7 +20,10 @@
                             if ($a.data('width')) {
                                 $containerImage.attr('width', Math.min($a.data('width'), maxWidth));
                             }
-                            $container.find('.container').html($containerImage);
+                            $container.find('.container').spin();
+                            $containerImage.on('load', function() {
+                                $container.find('.container').html($containerImage);
+                            });
                             break;
                         case 'vimeo':
                             var flag = original.match(vimeoRegExp);
