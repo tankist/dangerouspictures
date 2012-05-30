@@ -8,14 +8,27 @@ class Default_IndexController extends Zend_Controller_Action
      */
     protected $_service;
 
+    /**
+     * @var Service_Media
+     */
+    protected $_mediaService;
+
     public function init()
     {
-        $this->_service = new Service_User($this->_helper->Em());
+        $em = $this->_helper->Em();
+        $this->_service = new Service_User($em);
+        $this->_mediaService = new Service_Media($em);
     }
 
     public function indexAction()
     {
-        // action body
+        $root = $this->_service->getFirstRootUser();
+        $this->view->images = $this->_mediaService->getAll();
+        $this->view->assign(array(
+            'twitter' => $root->getTwitter() ? sprintf('http://twitter.com/%s', $root->getTwitter()) : '',
+            'facebook' => $root->getFacebook() ? sprintf('http://facebook.com/%s', $root->getFacebook()) : '',
+            'vimeo' => $root->getVimeo() ? sprintf('http://vimeo.com/%s', $root->getVimeo()) : ''
+        ));
     }
 
     public function contactAction()

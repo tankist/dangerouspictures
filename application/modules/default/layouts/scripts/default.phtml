@@ -2,16 +2,61 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <?php echo $this->headLink()->appendStylesheet('/css/admin.min.css') ?>
+    <?php echo $this->headLink()
+    ->appendStylesheet('/css/reset.css')
+    ->appendStylesheet('/css/style.css')
+    ->appendStylesheet('/css/ie6.css', 'screen', 'IE 6')
+    ->appendStylesheet('/css/ie7.css', 'screen', 'IE 7')
+    ?>
     <?php echo $this->headTitle() ?>
 </head>
-<body>
-<div class="container application">
-
-    <?php echo $this->flashMessages(); ?>
-
+<body id="body-wrapper">
+<div id="home">
+    <div class="header-box">
+        <div class="logo-box"><a href="#"><img src="images/mainlogo.png" alt="logo"></a></div>
+        <?php if (count($this->images)): ?>
+        <div class="slider-box">
+            <a class="slider-arrow prev" href="#back"><img src="images/slider_left.png" alt=""></a>
+            <div class="slider-wrapper">
+                <ul class="images">
+                    <?php foreach ($this->images as /** @var \Entities\Image $image */ $image): ?>
+                    <li><a
+                        data-original="<?php echo ($image instanceof \Entities\Image) ? $this->thumbnail($image, 'o') : $image->getPath() ?>"
+                        data-width="<?php echo $image->getWidth() ?>"
+                        data-height="<?php echo $image->getHeight() ?>"
+                        data-type="<?php echo ($image instanceof \Entities\Image) ? 'image' : 'vimeo' ?>"
+                        href="#"><img src="<?php echo $this->thumbnail($image, 's') ?>" width="91" height="52" alt=""></a></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <a class="slider-arrow next" href="#"><img src="images/slider_right.png" alt=""></a>
+        </div>
+        <?php endif; ?>
+    </div>
     <?php echo $this->layout()->content ?>
-
+    <div class="footer-box">
+        <div class="bottom-logo"></div>
+        <div class="bottom-info">
+            <span>t.</span> 213.479.3686
+            <span style="margin-left:76px;">f.</span> 213-995-9820
+            <span style="margin-left:46px;">e.</span> info@dangerpictures.com
+        </div>
+        <div class="bottom-icons-box">
+            <?php if ($this->facebook): ?>
+            <a target="_blank" href="<?php echo $this->facebook ?>" class="f_icon">&nbsp;</a>
+            <?php endif; ?>
+            <?php if ($this->twitter): ?>
+            <a target="_blank" href="<?php echo $this->twitter ?>" class="t_icon">&nbsp;</a>
+            <?php endif; ?>
+            <?php if ($this->vimeo): ?>
+            <a target="_blank" href="<?php echo $this->vimeo ?>" class="v_icon">&nbsp;</a>
+            <?php endif; ?>
+        </div>
+    </div>
 </div>
+<?php echo $this->headScript()
+    ->prependFile('/js/jquery/jquery.min.js')
+    ->appendFile('/js/supersleight-min.js', 'text/javascript', array('conditional' => 'IE 6'))
+?>
 </body>
 </html>
