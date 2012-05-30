@@ -1,0 +1,213 @@
+/**
+Common page css 
+**/
+
+html, body {
+	background:#0a2a42;
+	width:100%;
+	height:100%;
+	}
+
+body {
+	font-family: Narkisim, Arial, Tahoma, Verdana;
+	font-size:12px;
+	color:#000000;
+	}
+
+a {
+	color:#000000;
+	text-decoration:underline;
+	}
+a:hover {
+	color:#000000;
+	text-decoration:none;
+	}
+sup  {
+	font-size:8px;
+	}
+hr {
+	clear:both;
+	border:none;
+	border-bottom:1px solid #5D4737;
+	height:0%;
+	line-height: 0%;
+	}
+.hidden {
+	visibility:hidden;
+	}
+h1 {
+	
+	}
+h2 {
+	}
+h3 {
+	}
+h4 {}
+	
+.fl {
+	float:left;
+	}
+.fr {
+	float:right;
+	}
+.cb {
+	clear:both;
+	}
+.oh {
+	overflow:hidden;
+	}
+.center {
+	text-align:center;
+	}
+.right {
+	text-align:right;
+	}
+.center-container  {
+	display:inline-block;
+	height:auto;
+	overflow:visible;
+	vertical-align:middle;
+	}
+#body-wrapper {
+	width:100%;
+	background:url('../images/bg.png') no-repeat top center;
+	height: auto !important;
+    min-height: 100%;
+    width: 100%;
+	}
+#login {
+	width:338px;
+	position:absolute;
+	left:50%;
+	margin-left:-169px;
+	top:50%;
+	margin-top:-165px;
+	text-align:center;
+	}
+	#login input {
+		width:336px;
+		border:1px solid #123047;
+		border-radius: 8px;
+		background-color:#092438;
+		height:48px;
+		font-size:34px;
+		color:#0a2a42;
+		text-align:center;
+		margin-bottom:9px;
+		font-family:Narkisim, Arial, Tahoma, Verdana;
+		}
+	#login input.active {
+		border:1px solid #4e5c63;
+		color:#b5b0a3;
+		}
+	#login button {
+		width:141px;
+		background-color:#0e3654;
+		height:41px;
+		color:#092438;
+		font-size:31px;
+		font-family:Narkisim, Arial, Tahoma, Verdana;
+		border:0px solid #123047;
+		border-radius: 8px;
+		margin-top:13px;
+		margin-bottom:116px;
+		cursor:pointer;
+		}
+	#login button.active {
+		background-color:#0c3d61;
+		color:#c7beae;
+		}
+	#login div.hr {
+		background:#828683;
+		height:2px;
+		font-size:0px;
+		line-height:0px;
+		}
+	#login div.links {
+		color:#113e60;
+		font-size:12px;
+		text-align:right;
+		padding-top:4px;
+		}
+		#login div.links a {
+			color:#b5b0a3;
+			font-size:12px;
+			text-decoration:none;
+			}
+		#login div.links a:hover {
+			color:#b5b0a3;
+			text-decoration:underline;
+			}
+#body {
+	width:1010px;
+	margin:0px auto;
+	}
+#topmenu {
+	overflow:hidden;
+	padding-left:291px;
+	height:82px;
+	}
+	#topmenu  li {
+		float:left;
+		padding-right:20px;
+		}
+		#topmenu  li a{
+			font-size:18px;
+			color:#7d8082;
+			text-decoration:none;
+			display:block;
+			height:40px;
+			padding-top:42px;
+			text-align:center;
+			}
+		#topmenu  li a:hover{
+			color:#c7beae;
+			text-decoration:none;
+			}
+			#topmenu  li a.account-link {
+				width:198px;
+				}
+			#topmenu  li a.account-link:hover {
+				background:url('../images/account_link.png');
+				}
+			#topmenu  li a.gallery-link {
+				width:80px;
+				}
+			#topmenu  li a.gallery-link:hover {
+				background:url('../images/gallery_link.png');
+				}
+.topmenu-line {
+	height:5px;
+	margin-top:3px;
+	font-size:0px;
+	line-height:0px;
+	background:url('../images/topmenu_line.png');
+	}
+#submenu {
+	overflow:hidden;
+	padding-left:512px;
+	height:98px;
+	}
+	#submenu  li {
+		float:left;
+		padding-right:14px;
+		}
+		#submenu  li a{
+			font-size:13px;
+			color:#7d8082;
+			text-decoration:none;
+			display:block;
+			height:31px;
+			padding-top:20px;
+			text-align:center;
+			width:81px;
+			}
+		#submenu  li a:hover{
+			color:#c7beae;
+			text-decoration:none;
+			background:url('../images/submenu_link.png');
+			}
+#account-info-form {
+	width:834px;
+	margin:0px auto;
+	}
