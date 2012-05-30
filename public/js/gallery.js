@@ -84,10 +84,9 @@
                 if (options.slideshow) {
                     setInterval(function() {
                         ++currentPosition;
-                        if (currentPosition + visibleCount > imagesCount) {
-                            currentPosition = imagesCount - visibleCount;
+                        if (currentPosition + visibleCount <= imagesCount) {
+                            move(currentPosition);
                         }
-                        move(currentPosition);
                         show($images.find('a')[currentPosition]);
                     }, 10000);
                 }
