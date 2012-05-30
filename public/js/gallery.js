@@ -1,17 +1,19 @@
 (function(window, document, $) {
 
-    var vimeoEmbedScript = doT.template('<iframe src="http://player.vimeo.com/video/{{=it.vimeo_id}}?autoplay=1" width="{{=it.width}}" height="{{=it.height}}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
+    var vimeoEmbedScript = doT.template('<iframe src="http://player.vimeo.com/video/{{=it.vimeo_id}}" width="{{=it.width}}" height="{{=it.height}}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
 
     $.fn.gallery = function(o) {
         var options = $.extend($.fn.gallery.defaults, o);
         return this.each(function () {
+            var timer;
+
             function move(pos) {
                 $images.animate({left: -cellSize * pos});
             }
 
             function show(a) {
                 var $a = $(a), original = $a.data('original'),
-                    vimeoRegExp = /https?\:\/\/vimeo\.com\/(\d+)/ig,
+                    vimeoRegExp = /https?:\/\/vimeo\.com\/(\d+)/ig,
                     maxWidth = $container.width(), maxHeight = $container.height();
                 if (original) {
                     switch ($a.data('type')) {
@@ -44,22 +46,39 @@
                 }
             }
 
+            function tick() {
+                ++currentPosition;
+                if (currentPosition == imagesCount) {
+                    currentPosition = 0;
+                }
+                if (deltaImCnt > 0) {
+                    move(currentPosition > deltaImCnt ? deltaImCnt : currentPosition);
+                }
+                show($images.find('a')[currentPosition]);
+            }
+
+            function initTick() {
+                if (timer) {
+                    clearInterval(timer);
+                }
+                timer = setInterval(tick, options.interval);
+            }
+
             var $container = $(options.container),
                 $images = $('.images'),
                 imagesCount = $images.find('img').length,
                 cellSize = $images.find('li:first').width(),
                 currentPosition = 0,
                 visibleCount = cellSize ? Math.floor($(this).find('.slider-wrapper').width() / cellSize) : 0,
-                containerWidth = $container.width();
+                deltaImCnt = imagesCount - visibleCount;
             if ($container.length > 0) {
                 $(this)
                     .on('click', '.next', function(e) {
                         e.preventDefault();
                         ++currentPosition;
-                        if (currentPosition + visibleCount > imagesCount) {
-                            currentPosition = imagesCount - visibleCount;
+                        if (deltaImCnt > 0) {
+                            move(currentPosition > deltaImCnt ? deltaImCnt : currentPosition);
                         }
-                        move(currentPosition);
                     })
                     .on('click', '.prev', function(e) {
                         e.preventDefault();
@@ -71,7 +90,11 @@
                     })
                     .on('click', '.images a', function(e) {
                         e.preventDefault();
+                        currentPosition = $(this).closest('li').index();
                         show(this);
+                        if (options.slideshow) {
+                            initTick();
+                        }
                     });
                 if (!isNaN(parseInt(options.show))) {
                     currentPosition = parseInt(options.show);
@@ -82,13 +105,7 @@
                     show($images.find('a')[currentPosition]);
                 }
                 if (options.slideshow) {
-                    setInterval(function() {
-                        ++currentPosition;
-                        if (currentPosition + visibleCount <= imagesCount) {
-                            move(currentPosition);
-                        }
-                        show($images.find('a')[currentPosition]);
-                    }, 10000);
+                    initTick();
                 }
             }
         });
@@ -96,7 +113,8 @@
 
     $.fn.gallery.defaults = {
         show: 0,
-        slideshow: true
+        slideshow: true,
+        interval: 10000
     };
 
 })(this, this.document, this.jQuery);
