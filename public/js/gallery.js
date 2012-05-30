@@ -74,19 +74,30 @@
                         show(this);
                     });
                 if (!isNaN(parseInt(options.show))) {
-                    var pos = parseInt(options.show);
-                    if (pos < 0 || pos >= imagesCount) {
-                        pos = 0;
+                    currentPosition = parseInt(options.show);
+                    if (currentPosition < 0 || currentPosition >= imagesCount) {
+                        currentPosition = 0;
                     }
-                    move(pos);
-                    show($images.find('a')[pos]);
+                    move(currentPosition);
+                    show($images.find('a')[currentPosition]);
+                }
+                if (options.slideshow) {
+                    setInterval(function() {
+                        ++currentPosition;
+                        if (currentPosition + visibleCount > imagesCount) {
+                            currentPosition = imagesCount - visibleCount;
+                        }
+                        move(currentPosition);
+                        show($images.find('a')[currentPosition]);
+                    }, 10000);
                 }
             }
         });
     };
 
     $.fn.gallery.defaults = {
-        show: 0
+        show: 0,
+        slideshow: true
     };
 
 })(this, this.document, this.jQuery);
