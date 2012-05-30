@@ -35,9 +35,11 @@ class Root_IndexController extends Zend_Controller_Action
             /** @var $user \Entities\User */
             $user = $this->_service->create();
             $user->populate($form->getValues());
+            $user->setUsername('admin');
             $user->setRole(Sch_Acl_Roles::ADMIN);
             $user->setPassword(md5($user->getPassword()));
             $this->_service->save($user);
+            Zend_Auth::getInstance()->clearIdentity();
         }
         else {
             $this->view->error = $form->getMessages();

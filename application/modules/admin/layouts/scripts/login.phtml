@@ -2,13 +2,19 @@
 <html lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <?php echo $this->headLink()->appendStylesheet('/css/admin.min.css') ?>
+    <?php echo $this->headLink()
+        ->appendStylesheet('/css/reset.css')
+        ->appendStylesheet('/css/style.css')
+        ->appendStylesheet('/css/ie6.css', 'screen', 'IE 6')
+        ->appendStylesheet('/css/ie7.css', 'screen', 'IE 7')
+    ?>
     <?php echo $this->headTitle() ?>
 </head>
-<body>
+<body id="body-wrapper">
 <?php echo $this->layout()->content ?>
 <?php echo $this->headScript()
-    ->prependFile('/js/jquery/jquery.form.js')
-    ->prependFile('/js/jquery/jquery.min.js') ?>
+    ->prependFile('/js/jquery/jquery.min.js')
+    ->appendFile('/js/supersleight-min.js', 'text/javascript', array('conditional' => 'IE 6'))
+?>
 </body>
 </html>

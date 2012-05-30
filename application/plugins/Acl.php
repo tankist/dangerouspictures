@@ -93,10 +93,10 @@ class Plugin_Acl extends Zend_Controller_Plugin_Abstract {
 
         // Auth fail
 
-        if (!$request->getParam('return')) {
+        /*if (!$request->getParam('return')) {
             $returnUrl = urlencode($request->getRequestUri());
             $request->setParam('return', $returnUrl);
-        }
+        }*/
 
         if ($this->isRegistered()) {
             if ($this->_user->getStatus() != 'Active') {

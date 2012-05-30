@@ -21,6 +21,16 @@ class Service_User extends Sch_Service_Abstract
     }
 
     /**
+     * @param string $username
+     * @return \Entities\User
+     */
+    public function getByUsername($username)
+    {
+        $user = $this->getRepository()->findOneBy(array('username' => $username));
+        return $user;
+    }
+
+    /**
      * @return \Entities\User[]
      */
     public function getRootUsers()

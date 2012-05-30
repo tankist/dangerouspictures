@@ -7,15 +7,15 @@ class Admin_Form_Login extends Sch_Form
     {
         $return = new Zend_Form_Element_Hidden('return');
 
-        $email = new Zend_Form_Element_Text('email');
-        $email->setRequired(true);
+        $username = new Zend_Form_Element_Text('username');
+        $username->setRequired(true);
 
         $password = new Zend_Form_Element_Password('password');
         $password->setRequired(true);
 
         $remember = new Zend_Form_Element_Checkbox('remember');
 
-        $this->addElements(array($return, $email, $password, $remember));
+        $this->addElements(array($return, $username, $password, $remember));
     }
 
     public function prepareDecorators()

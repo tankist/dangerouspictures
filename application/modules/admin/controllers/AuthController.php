@@ -63,7 +63,7 @@ class Admin_AuthController extends Zend_Controller_Action
 
     private function _authenticate($data)
     {
-        if (empty($data['email']) || empty($data['password'])) {
+        if (empty($data['username']) || empty($data['password'])) {
             return false;
         }
 
@@ -76,10 +76,10 @@ class Admin_AuthController extends Zend_Controller_Action
         $authAdapter = new Sch_Auth_Adapter_Doctrine2(
             $this->_helper->Em(),
             'Entities\User',
-            'email',
+            'username',
             'password'
         );
-        $authAdapter->setIdentity($data['email']);
+        $authAdapter->setIdentity($data['username']);
         $authAdapter->setCredential(md5($data['password']));
 
         $auth = Zend_Auth::getInstance();

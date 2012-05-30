@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="users",
  *             uniqueConstraints={
  *                  @ORM\UniqueConstraint(name="email", columns={"email"}),
+ *                  @ORM\UniqueConstraint(name="username", columns={"username"}),
  *            })
  */
 class User extends AbstractEntity
@@ -25,13 +26,19 @@ class User extends AbstractEntity
 
     /**
      * @var string
-     * @ORM\Column(type="string", name="email", unique=true)
+     * @ORM\Column(type="string", unique=true)
+     */
+    protected $username;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", unique=true)
      */
     protected $email;
 
     /**
      * @var string
-     * @ORM\Column(type="string", name="password", length=32)
+     * @ORM\Column(type="string", length=32)
      */
     protected $password;
 
@@ -279,6 +286,24 @@ class User extends AbstractEntity
     {
         $this->created = new \DateTime();
         return $this;
+    }
+
+    /**
+     * @param string $username
+     * @return User
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
     }
 
 }

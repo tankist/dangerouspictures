@@ -27,7 +27,7 @@ class Helper_CurrentUser extends Zend_Controller_Action_Helper_Abstract
                     throw new Zend_Controller_Action_Exception('Entity manager cannot be found');
                 }
                 $manager = new Service_User($emHelper->getEntityManager());
-                $user = is_string($identity) ? $manager->getByEmail($identity) : null;
+                $user = is_string($identity) ? $manager->getByUsername($identity) : null;
                 $this->_currentUser = $user;
                 if ($user) {
                     $now = new DateTime();
@@ -36,6 +36,9 @@ class Helper_CurrentUser extends Zend_Controller_Action_Helper_Abstract
                         $user->setOnlineLast(new DateTime());
                         $manager->save($user);
                     }
+                }
+                else {
+                    Zend_Auth::getInstance()->clearIdentity();
                 }
                 $this->getFrontController()->setParam('user', $this->_currentUser);
             }
