@@ -67,10 +67,10 @@
         <tr>
             <td class="span1 center vcenter">
                 <div class="down-btn-container up">
-                    <a class="btn icon-arrow-up reorder" data-id="<?php echo $media->getId() ?>" href="<?php echo $this->url(array('action' => 'up')) ?>"></a>
+                    <a class="btn icon-arrow-up reorder" data-id="<?php echo $media->getId() ?>" href="<?php echo $this->url(array('action' => 'up', 'controller' => 'media')) ?>"></a>
                 </div>
                 <div class="down-btn-container down">
-                    <a class="btn icon-arrow-down reorder" data-id="<?php echo $media->getId() ?>" href="<?php echo $this->url(array('action' => 'down')) ?>"></a>
+                    <a class="btn icon-arrow-down reorder" data-id="<?php echo $media->getId() ?>" href="<?php echo $this->url(array('action' => 'down', 'controller' => 'media')) ?>"></a>
                 </div>
             </td>
             <td>
@@ -81,7 +81,7 @@
                 </ul>
             </td>
             <td class="center vcenter">
-                <a class="btn btn-large btn-danger" href="<?php echo $this->url(array('action' => 'delete', 'id' => $media->getId())) ?>"><i class="icon-trash"></i></a>
+                <a class="btn btn-large btn-danger" href="<?php echo $this->url(array('action' => 'delete', 'controller' => 'media', 'id' => $media->getId())) ?>"><i class="icon-trash"></i></a>
             </td>
         </tr>
         <?php endforeach; ?>
