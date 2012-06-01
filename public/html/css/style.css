@@ -461,3 +461,111 @@ h4 {}
         font-size:12px;
         padding: 5px 33px 5px 18px;
         }
+#upload-box {
+    width:717px;
+    margin:0px auto;
+    }
+    #upload-box input {
+        font-size: 31px;
+        margin-top : -44px;
+        width: 717px;
+        position: absolute;
+        opacity: 0;
+        }
+    .psevdo-upload-box {
+        height: 45px;
+        width: 710px;
+        background: url('../images/upload_bg.png') no-repeat;
+        }
+    .psevdo-upload-box-hover {
+        height: 45px;
+        width: 710px;
+        background: url('../images/upload_bg_a.png') no-repeat;
+        }
+#files-box-wrapper {
+    width:717px;
+    margin:61px auto;
+    }
+#files-box {
+    width:616px;
+    background: #031d30;
+    height:632px;
+    border:1px solid #1a364b;
+    border-radius:6px;
+    overflow: hidden;
+    padding-top: 5px;
+    }
+.scrollbar-pane {
+    background: #031d30;
+    height:632px;
+    border-right:1px solid #1a364b;
+    border-radius:6px;
+    overflow: hidden;
+    padding-top: 5px;
+    }
+.file-item {
+    padding-left:28px;
+    padding-right:30px;
+    padding-top:10px;
+    padding-bottom:3px;
+    color:#103f63;
+    font-size:15px;
+    }
+    .file-content {
+        overflow: hidden;
+        padding-top:8px;
+        }
+        .file-name {
+            margin-left:32px;
+            padding-bottom:2px;
+            border-bottom:1px solid #04263f;
+            }
+        .file-number {
+            width:26px;
+            height:66px;
+            background: url('../images/file_number.png') no-repeat;
+            float: left;
+            color:#c7beae;
+            font-size: 17px;
+            padding-top:9px;
+            text-align: center;
+            line-height: 22px;
+            margin-right: 5px;
+            }
+        .file-preview {
+            float: left;
+            margin-right: 5px;
+            }
+        .file-info-wrapper {
+            float:left;
+            padding-right:7px;
+            }
+        .file-info {
+            width:309px;
+            height:22px;
+            border:0px;
+            border-radius:4px;
+            background: #04263f;
+            margin-bottom: 4px;
+            padding-left:13px;
+            line-height: 22px;
+            }
+        .file-content button {
+            width:57px;
+            height:33px;
+            border:0px;
+            border-radius:4px;
+            background: #092438;
+            color:#868788;
+            float: left;
+            cursor: pointer;
+            margin-bottom:8px;
+            }
+            .file-content button.file-save:hover {
+                background: #c7beae;
+                color:#1c3547;
+                }
+            .file-content button.file-delete:hover {
+                background: #dd2227;
+                color:#b5b0a3;
+                }
