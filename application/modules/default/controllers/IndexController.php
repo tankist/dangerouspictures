@@ -24,11 +24,13 @@ class Default_IndexController extends Zend_Controller_Action
     {
         $root = $this->_service->getFirstRootUser();
         $this->view->images = $this->_mediaService->getAll();
-        $this->view->assign(array(
-            'twitter' => $root->getTwitter() ? sprintf('http://twitter.com/%s', $root->getTwitter()) : '',
-            'facebook' => $root->getFacebook() ? sprintf('http://facebook.com/%s', $root->getFacebook()) : '',
-            'vimeo' => $root->getVimeo() ? sprintf('http://vimeo.com/%s', $root->getVimeo()) : ''
-        ));
+        if ($root) {
+            $this->view->assign(array(
+                'twitter' => $root->getTwitter() ? sprintf('http://twitter.com/%s', $root->getTwitter()) : '',
+                'facebook' => $root->getFacebook() ? sprintf('http://facebook.com/%s', $root->getFacebook()) : '',
+                'vimeo' => $root->getVimeo() ? sprintf('http://vimeo.com/%s', $root->getVimeo()) : ''
+            ));
+        }
     }
 
     public function contactAction()

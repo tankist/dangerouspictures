@@ -22,7 +22,7 @@ class Admin_AccountController extends Zend_Controller_Action
             'action' => $this->_helper->url('save')
         ));
         if (($data = $this->_helper->sessionSaver(self::SESSION_SAVER_HANDLER))) {
-            $form->populate($data);
+            $form->isValid($data);
             $this->_helper->sessionSaver->delete(self::SESSION_SAVER_HANDLER);
         }
         else {
@@ -45,7 +45,6 @@ class Admin_AccountController extends Zend_Controller_Action
         }
         else {
             $this->_helper->sessionSaver(self::SESSION_SAVER_HANDLER, $form->getValues());
-            $this->_helper->flashMessenger->addErrorsFromForm($form);
         }
         $this->_redirect($this->_helper->url(''));
     }

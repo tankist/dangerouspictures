@@ -28,14 +28,14 @@ class Admin_Form_Account extends Sch_Form
     public function prepareDecorators()
     {
         $this->setDecorators(array(
-            'FormErrors',
             new Sch_Form_Decorator_ViewScript(array('viewScript' => 'forms/account.phtml')),
-            'Fieldset',
             'Form'
         ));
-        $this->setElementDecorators(array(
-            'ViewHelperTwitter'
-        ));
+        foreach ($this->getElements() as /** @var Zend_Form_Element $element */ $element) {
+            $element->addDecorators(array(
+                'dl' => new Zend_Form_Decorator_HtmlTag(array('tag' => 'dl'))
+            ));
+        }
         return parent::prepareDecorators();
     }
 

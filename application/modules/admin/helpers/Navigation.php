@@ -11,16 +11,18 @@ class Admin_Helper_Navigation extends Helper_AbstractNavigation
         if (!$this->_navigation) {
             $this->_navigation = new Zend_Navigation(array(
                 new Zend_Navigation_Page_Mvc(array(
-                    'label' => 'Media',
-                    'module' => 'admin',
-                    'controller' => 'media',
-                    'action' => ''
-                )),
-                new Zend_Navigation_Page_Mvc(array(
-                    'label' => 'Account',
+                    'label' => 'Account Management',
                     'module' => 'admin',
                     'controller' => 'account',
-                    'action' => ''
+                    'action' => '',
+                    'class' => 'account-link'
+                )),
+                new Zend_Navigation_Page_Mvc(array(
+                    'label' => 'Gallery',
+                    'module' => 'admin',
+                    'controller' => 'media',
+                    'action' => '',
+                    'class' => 'gallery-link'
                 ))
             ));
         }
