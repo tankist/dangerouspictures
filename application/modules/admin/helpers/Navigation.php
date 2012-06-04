@@ -4,6 +4,11 @@ class Admin_Helper_Navigation extends Helper_AbstractNavigation
 {
 
     /**
+     * @var Zend_Navigation
+     */
+    protected $_subNavigation;
+
+    /**
      * @return Zend_Navigation_Container
      */
     public function getNavigation()
@@ -29,10 +34,32 @@ class Admin_Helper_Navigation extends Helper_AbstractNavigation
         return $this->_navigation;
     }
 
+    public function getSubnavigation()
+    {
+        if (!$this->_subNavigation) {
+            $this->_subNavigation = new Zend_Navigation(array(
+                new Zend_Navigation_Page_Mvc(array(
+                    'label' => 'Images',
+                    'module' => 'admin',
+                    'controller' => 'media',
+                    'action' => 'images'
+                )),
+                new Zend_Navigation_Page_Mvc(array(
+                    'label' => 'Video',
+                    'module' => 'admin',
+                    'controller' => 'media',
+                    'action' => 'video'
+                ))
+            ));
+        }
+        return $this->_subNavigation;
+    }
+
     public function direct()
     {
         $navigation = parent::direct();
         Zend_Layout::getMvcInstance()->assign('navigation', $navigation);
+        Zend_Layout::getMvcInstance()->assign('subNavigation', $this->getSubnavigation());
         return $navigation;
     }
 

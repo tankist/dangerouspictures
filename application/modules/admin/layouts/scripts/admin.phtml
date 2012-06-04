@@ -14,10 +14,7 @@
 <div id="header">
     <?php echo $this->navigation()->menu($this->layout()->navigation)->setUlClass('navigation')?>
     <div class="topmenu-line">&nbsp;</div>
-    <ul id="submenu">
-        <li><a href="#">IMAGES</a></li>
-        <li><a href="#">VIDEO</a></li>
-    </ul>
+    <?php echo $this->navigation()->menu($this->layout()->subNavigation)->setUlClass('submenu')?>
 </div>
 <div id="body">
     <?php echo $this->flashMessages(); ?>
