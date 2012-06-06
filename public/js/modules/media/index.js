@@ -2,6 +2,8 @@
 
     $(function() {
 
+        $('#files-box').scrollbar();
+
         (function() {
             var $vimeo = $('.add.vimeo'),
                 vimeoRegExp = /https?\:\/\/vimeo\.com\/(\d+)/ig,
@@ -51,6 +53,10 @@
         (function() {
             var $image = $('.add.image'), $form = $image.find('form');
 
+            $image.find('input:file').change(function(e) {
+                $form.submit();
+            });
+
             $image.find('.save').click(function(e) {
                 e.preventDefault();
                 $form.submit();
@@ -90,6 +96,23 @@
                 });
             }
         });
+
+        (function() {
+            $('#files-box form').ajaxForm({
+                dataType: 'json',
+                data: {
+                    format: 'json'
+                },
+                success: function(data) {
+                    window.location.reload();
+                }
+            });
+
+            $('.file-save').click(function(e) {
+                e.preventDefault();
+                $(this).closest('form').submit();
+            })
+        })();
 
     });
 

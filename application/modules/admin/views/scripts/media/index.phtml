@@ -1,95 +1,55 @@
-<div class="row vmargin">
-    <div class="span2 pull-right">
-        <div class="btn-group pull-right">
-            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Add...<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a data-toggle="image" href="#image">Image</a></li>
-                <li><a data-toggle="vimeo" href="#vimeo">Vimeo Video</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="add row vmargin hide image">
-    <div class="span4 offset4">
-        <form action="<?php echo $this->url(array('action' => 'save-image', 'controller' => 'media')) ?>" class="image" enctype="multipart/form-data">
-            <div class="control-group">
-                <label for="image" class="control-label">Image:</label>
+<div class="topmenu-line">&nbsp;</div>
+<ul class="submenu">
+    <li><a data-toggle="image" href="#">IMAGES</a></li>
+    <li><a data-toggle="vimeo" href="#">VIDEO</a></li>
+</ul>
 
-                <div class="controls"><input type="file" class="input-file" id="image" name="image"></div>
-            </div>
-            <div class="control-group">
-                <div class="actions pull-right">
-                    <a class="btn cancel" href="#cancel">Cancel</a>
-                    <a class="btn btn-primary save" href="#save">Save</a>
-                </div>
-            </div>
+<div id="upload-box">
+    <div class="add image hide">
+        <form action="<?php echo $this->url(array('action' => 'save-image', 'controller' => 'media')) ?>" method="post" class="image" enctype="multipart/form-data">
+            <div class="psevdo-upload-box">&nbsp;</div>
+            <input name="image" class="file" type="file" size="36">
+        </form>
+    </div>
+    <div class="add vimeo hide">
+        <form action="<?php echo $this->url(array('action' => 'save-vimeo', 'controller' => 'media')) ?>" method="post" class="vimeo">
+            <input class="url" size="36" type="text" name="url" id="url">
+            <button class="upload">&nbsp;</button>
         </form>
     </div>
 </div>
-<div class="add row vmargin hide vimeo">
-    <div class="span4 offset4">
-        <form method="post" action="<?php echo $this->url(array('action' => 'save-vimeo', 'controller' => 'media')) ?>" class="vimeo">
-            <div class="control-group">
-                <label for="video-url" class="control-label">URL:</label>
 
-                <div class="controls"><input type="text" class="span4" id="video-url" name="url"></div>
-            </div>
-            <div class="control-group thumbnails-container hide">
-                <a class="btn pull-right change-thumb" href="#preview"><i class="icon-camera"></i></a>
-                <ul class="thumbnails">
-                    <li>
-                        <a class="thumbnail" href="#">
-                            <img alt="" src="about:blank">
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="control-group">
-                <div class="actions pull-right">
-                    <a class="btn preview" href="#preview">Preview</a>
-                    <a class="btn cancel" href="#cancel">Cancel</a>
-                    <a class="btn btn-primary save" href="#save">Save</a>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<div class="row vmargin">
+<div id="files-box-wrapper">
     <?php if (count($this->media) > 0): ?>
-    <table class="table table-bordered">
-        <tr>
-            <th class="span1 center">#</th>
-            <th>Thumbnail</th>
-            <th class="span2 center">Actions</th>
-        </tr>
-        <?php foreach ($this->media as /** @var \Entities\Media $media */ $media): ?>
-        <tr>
-            <td class="span1 center vcenter">
-                <div class="down-btn-container up">
-                    <a class="btn icon-arrow-up reorder" data-id="<?php echo $media->getId() ?>" href="<?php echo $this->url(array('action' => 'up', 'controller' => 'media')) ?>"></a>
+    <div id="files-box-border">
+        <ul id="files-box">
+            <?php foreach ($this->media as /** @var \Entities\Media $media */ $media): ?>
+            <li class="file-item">
+                <div class="file-name">Image Name</div>
+                <div class="file-content">
+                    <form method="post" action="<?php echo $this->url(array('action' => 'save', 'controller' => 'media')) ?>">
+                        <input type="hidden" name="id" value="<?php echo $media->getId() ?>">
+                        <div class="file-number">#<br><?php echo $media->getPosition() ?: 'u' ?>
+                            <a class="unpos" href="<?php echo $this->url(array('controller' => 'media', 'action' => 'unpos', 'id' => $media->getId())) ?>">&nbsp;</a></div>
+                        <div class="file-preview"><img src="<?php echo $this->thumbnail($media, 's') ?>" alt="<?php echo $media->getTitle() ?>"></div>
+                        <div class="file-info-wrapper">
+                            <input type="text" name="title" class="file-info" value="<?php echo $media->getTitle() ?>" title="Title">
+                            <input type="text" name="description" class="file-info" value="<?php echo $media->getDescription() ?>" title="Description">
+                            <input type="text" name="link" class="file-info" value="<?php echo $media->getLink() ?>" title="Hyperlink">
+                        </div>
+                        <a class="button file-save">SAVE</a>
+                        <a href="<?php echo $this->url(array('action' => 'delete', 'controller' => 'media', 'id' => $media->getId())) ?>" class="button file-delete">DEL</a>
+                    </form>
                 </div>
-                <div class="down-btn-container down">
-                    <a class="btn icon-arrow-down reorder" data-id="<?php echo $media->getId() ?>" href="<?php echo $this->url(array('action' => 'down', 'controller' => 'media')) ?>"></a>
-                </div>
-            </td>
-            <td>
-                <ul class="thumbnails">
-                    <li><a href="#" class="thumbnail">
-                        <img src="<?php echo $this->thumbnail($media, 's') ?>" alt="">
-                    </a></li>
-                </ul>
-            </td>
-            <td class="center vcenter">
-                <a class="btn btn-large btn-danger" href="<?php echo $this->url(array('action' => 'delete', 'controller' => 'media', 'id' => $media->getId())) ?>"><i class="icon-trash"></i></a>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
     <?php else: ?>
     <h2>No media files found</h2>
     <?php endif; ?>
 </div>
+
 <div id="mediaModal" class="modal hide fade">
     <div class="modal-header">
         <button class="close" data-dismiss="modal">×</button>
@@ -103,6 +63,12 @@
 <script type="text/html" id="vimeoPreview">
     <iframe src="http://player.vimeo.com/video/{{=it.vimeo_id}}?title=0&byline=0&portrait=0&color=3EFFDA" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 </script>
+
 <?php $this->headScript()
     ->appendFile('/js/doT.js')
+    ->appendFile('/js/jquery/jquery.form.js')
+    ->appendFile('/js/jquery/jquery.scroll.min.js')
+    ->appendFile('/js/bootstrap.min.js')
     ->appendFile('/js/modules/media/index.js') ?>
+
+<?php $this->headLink()->appendStylesheet('/css/scrollbar.css'); ?>

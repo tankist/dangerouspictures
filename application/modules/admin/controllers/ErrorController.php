@@ -3,6 +3,15 @@
 class Admin_ErrorController extends Zend_Controller_Action
 {
 
+    public $ajaxable = array(
+        'error' => array('json')
+    );
+
+    public function init()
+    {
+        $this->_helper->getHelper('AjaxContext')->initContext();
+    }
+
     public function errorAction()
     {
         $errors = $this->_getParam('error_handler');

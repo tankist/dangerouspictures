@@ -42,13 +42,15 @@ class Admin_Helper_Navigation extends Helper_AbstractNavigation
                     'label' => 'Images',
                     'module' => 'admin',
                     'controller' => 'media',
-                    'action' => 'images'
+                    'action' => 'images',
+                    'class' => 'image'
                 )),
                 new Zend_Navigation_Page_Mvc(array(
                     'label' => 'Video',
                     'module' => 'admin',
                     'controller' => 'media',
-                    'action' => 'video'
+                    'action' => 'video',
+                    'class' => 'vimeo'
                 ))
             ));
         }

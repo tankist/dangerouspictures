@@ -138,7 +138,7 @@ h4 {}
 			color:#b5b0a3;
 			text-decoration:underline;
 			}
-#body {
+#body, #header, #footer {
 	width:1010px;
 	margin:0px auto;
 	}
@@ -146,6 +146,7 @@ h4 {}
 	overflow:hidden;
 	padding-left:291px;
 	height:82px;
+    margin: 0;
 	}
 	.navigation  li {
 		float:left;
@@ -187,6 +188,7 @@ h4 {}
 	overflow:hidden;
 	padding-left:512px;
 	height:98px;
+    margin: 0;
 	}
 	.submenu  li {
 		float:left;
@@ -479,11 +481,145 @@ h4 {}
         font-size:12px;
         padding: 5px 33px 5px 18px;
         }
-.errors {
-    float: right;
-    margin-top: 5px;
+#upload-box {
+    width:717px;
+    margin:0px auto;
     }
-    .errors li{
-        color:#dd2227;
-        font-size: 12px;
+    #upload-box input.file {
+        font-size: 31px;
+        margin-top : -44px;
+        width: 717px;
+        position: absolute;
+        opacity: 0;
         }
+    #upload-box input.url {
+        width: 595px;
+        height: 40px;
+        background: transparent url('../images/input_bg.png') no-repeat;
+        border: none;
+        color: #103F63;
+        font-size: 15px;
+        font-family: Narkisim,Arial,Tahoma,Verdana;
+    }
+    #upload-box button.upload {
+        border: none;
+        background: transparent url('../images/upload_btn.png') no-repeat;
+        width: 115px;
+        height: 55px;
+        margin-left: -5px;
+    }
+    .psevdo-upload-box {
+        height: 45px;
+        width: 710px;
+        background: url('../images/upload_bg.png') no-repeat;
+        }
+    .psevdo-upload-box-hover {
+        height: 45px;
+        width: 710px;
+        background: url('../images/upload_bg_a.png') no-repeat;
+        }
+#files-box-wrapper {
+    width:717px;
+    margin:61px auto;
+    }
+#files-box {
+    width:616px;
+    background: #031d30;
+    height:632px;
+    border:1px solid #1a364b;
+    border-radius:6px;
+    overflow: hidden;
+    padding-top: 5px;
+    }
+.scrollbar-pane {
+    background: #031d30;
+    height:632px;
+    border-right:1px solid #1a364b;
+    border-radius:6px;
+    overflow: hidden;
+    padding-top: 5px;
+    }
+.file-item {
+    padding-left:28px;
+    padding-right:30px;
+    padding-top:10px;
+    padding-bottom:3px;
+    color:#103f63;
+    font-size:15px;
+    }
+    .file-content {
+        overflow: hidden;
+        padding-top:8px;
+        }
+        .file-name {
+            margin-left:32px;
+            padding-bottom:2px;
+            border-bottom:1px solid #04263f;
+            }
+        .file-number {
+            width:26px;
+            height:66px;
+            background: #04263F;
+            border-radius: 7px 7px 7px 7px;
+            float: left;
+            color:#c7beae;
+            font-size: 17px;
+            padding-top:9px;
+            text-align: center;
+            line-height: 22px;
+            margin-right: 5px;
+            position: relative;
+            }
+            .file-number a.unpos {
+                background: url("../images/file_number.png") no-repeat scroll 0 -53px transparent;
+                bottom: 0;
+                display: block;
+                position: absolute;
+                text-decoration: none;
+                width: 26px;
+            }
+        .file-preview {
+            float: left;
+            margin-right: 5px;
+            line-height: 78px;
+            text-align: center;
+            }
+        .file-info-wrapper {
+            float:left;
+            padding-right:7px;
+            }
+        .file-info {
+            width:309px;
+            border:0px;
+            border-radius:4px;
+            background: #04263f;
+            margin-bottom: 4px;
+            padding:2px 2px 2px 13px;
+            line-height: 22px;
+            display: block;
+            font: inherit;
+            color: #103F63;
+            }
+        .file-content a.button {
+            width:57px;
+            height:33px;
+            border:0px;
+            border-radius:4px;
+            background: #092438;
+            color:#868788;
+            float: left;
+            cursor: pointer;
+            margin-bottom:8px;
+            display: block;
+            line-height: 33px;
+            text-align: center;
+            text-decoration: none;
+            }
+            .file-content a.button.file-save:hover {
+                background: #c7beae;
+                color:#1c3547;
+                }
+            .file-content a.button.file-delete:hover {
+                background: #dd2227;
+                color:#b5b0a3;
+                }

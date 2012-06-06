@@ -24,8 +24,8 @@
                         data-original="<?php echo ($image instanceof \Entities\Image) ? $this->thumbnail($image, 'o') : $image->getPath() ?>"
                         data-width="<?php echo $image->getWidth() ?>"
                         data-height="<?php echo $image->getHeight() ?>"
-                        data-type="<?php echo ($image instanceof \Entities\Image) ? 'image' : 'vimeo' ?>"
-                        href="#"><img src="<?php echo $this->thumbnail($image, 's') ?>" width="91" height="52" alt=""></a></li>
+                        data-type="<?php echo ($image instanceof \Entities\Image) ? 'image' : 'vimeo' ?>" title="<?php echo $image->getTitle() ?>"
+                        href="<?php echo $image->getLink() ?>"><img src="<?php echo $this->thumbnail($image, 's') ?>" width="91" height="52" alt="<?php echo $image->getDescription() ?>"></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>

@@ -7,7 +7,9 @@ class Admin_MediaController extends Zend_Controller_Action
         'save-vimeo' => array('json'),
         'save-image' => array('json'),
         'up' => array('json'),
-        'down' => array('json')
+        'down' => array('json'),
+        'positions' => array('json'),
+        'save' => array('json')
     );
 
     /**
@@ -120,5 +122,39 @@ class Admin_MediaController extends Zend_Controller_Action
         ), null, true));
     }
 
-}
+    public function positionsAction()
+    {
+        $taken = $this->_service->getAllPositions();
+        $this->view->positions = array_values(array_diff(range(1, 99), $taken));
+    }
 
+    public function unposAction()
+    {
+        /** @var $media \Entities\Media */
+        if (!($media = $this->_service->getById($this->_getParam('id')))) {
+            throw new Zend_Controller_Action_Exception('Media not found', 404);
+        }
+        $media->setPosition(null);
+        $this->_service->save($media);
+        if (!$this->getRequest()->isXmlHttpRequest()) {
+            $this->_redirect($this->_helper->url(''));
+        }
+    }
+
+    public function saveAction()
+    {
+        /** @var $request Zend_Controller_Request_Http */
+        $request = $this->getRequest();
+        /** @var $media \Entities\Media */
+        if (!($media = $this->_service->getById($request->getParam('id')))) {
+            throw new Zend_Controller_Action_Exception('Media not found', 404);
+        }
+        if ($request->isPost()) {
+            $media->setTitle($request->getPost('title'));
+            $media->setDescription($request->getPost('description'));
+            $media->setLink($request->getPost('link'));
+            $this->_service->save($media);
+        }
+    }
+
+}

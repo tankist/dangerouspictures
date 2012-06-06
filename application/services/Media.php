@@ -25,7 +25,22 @@ class Service_Media extends Sch_Service_Abstract
 
     public function getAll()
     {
-        return $this->getRepository()->findBy(array(), array('position' => 'ASC'));
+        $media = $this->getRepository()->findBy(array(), array('position' => 'ASC'));
+        usort($media, function ($a, $b) {
+            $posA = $a->getPosition();
+            $posB = $b->getPosition();
+            if ($posA == $posB) {
+                return 0;
+            }
+            if ($posA === null) {
+                return 1;
+            }
+            if ($posB === null) {
+                return -1;
+            }
+            return ($posA < $posB) ? -1 : 1;
+        });
+        return $media;
     }
 
     /**
@@ -110,18 +125,6 @@ class Service_Media extends Sch_Service_Abstract
         return true;
     }
 
-    /**
-     * @param Media $entity
-     * @return Sch_Service_Abstract
-     */
-    public function save($entity)
-    {
-        if (!$entity->getPosition()) {
-            $entity->setPosition($this->getLastPosition() + 1);
-        }
-        return parent::save($entity);
-    }
-
     public function delete($entity)
     {
         /** @var $pathHelper Helper_AttachmentPath */
@@ -161,6 +164,14 @@ class Service_Media extends Sch_Service_Abstract
             throw new Sch_Service_Exception('Error on downloading thumbnail');
         }
         return true;
+    }
+
+    public function getAllPositions()
+    {
+        $result = $this->getEntityManager()
+            ->createQuery('SELECT m.position FROM Entities\Media m ORDER BY m.position')
+            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+        return (count($result) > 0) ? array_map(function($result) {return $result['position'];}, $result) : 0;
     }
 
 }

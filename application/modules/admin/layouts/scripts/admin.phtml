@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <?php echo $this->headLink()
     ->appendStylesheet('/css/reset.css')
+    ->appendStylesheet('/css/admin.css')
     ->appendStylesheet('/css/style.css')
     ->appendStylesheet('/css/ie6.css', 'screen', 'IE 6')
     ->appendStylesheet('/css/ie7.css', 'screen', 'IE 7')
@@ -13,20 +14,10 @@
 <body id="body-wrapper">
 <div id="header">
     <?php echo $this->navigation()->menu($this->layout()->navigation)->setUlClass('navigation')?>
-    <div class="topmenu-line">&nbsp;</div>
-    <?php echo $this->navigation()->menu($this->layout()->subNavigation)->setUlClass('submenu')?>
 </div>
 <div id="body">
     <?php echo $this->flashMessages(); ?>
     <?php echo $this->layout()->content ?>
-</div>
-<div id="footer">
-    <div class="additional-info">
-        <h6>Important Page Information</h6>
-        <hr>
-        <p>*This website has only one user account. The username of which is always ‘admin’. The password can be reset to any that is desirable to the administrator.</p>
-        <p>* Account Email is the address which can be used as an alternative to username in the ‘log-in’ screen. It is also the email address to which all the contact form messages will be sent to. Password recovery is also done through the same email.</p>
-    </div>
 </div>
 <?php echo $this->headScript()
     ->prependFile('/js/jquery/jquery.min.js')

@@ -30,7 +30,7 @@ class Media extends AbstractEntity
 
     /**
      * @var int
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     protected $position;
 
@@ -45,6 +45,24 @@ class Media extends AbstractEntity
      * @ORM\Column(type="integer", length=5)
      */
     protected $height;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    protected $title;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    protected $description;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $link;
 
     /**
      * @var array
@@ -166,6 +184,60 @@ class Media extends AbstractEntity
     public static function getSize($type)
     {
         return (array_key_exists($type, self::$_sizes)) ? self::$_sizes[$type] : null;
+    }
+
+    /**
+     * @param string $description
+     * @return Media
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $link
+     * @return Media
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
+    }
+
+    /**
+     * @param string $title
+     * @return Media
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
 }

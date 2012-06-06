@@ -50,7 +50,9 @@
                                 }
                             }
                     }
-
+                    $('.shadow-text')
+                        .find('h1').html($a.attr('title')).wrap($('<a>', {href: $a.attr('href')})).end()
+                        .find('span').html($a.find('img').attr('alt')).end();
                 }
             }
 
