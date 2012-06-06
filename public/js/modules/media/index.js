@@ -51,15 +51,19 @@
         })();
 
         (function() {
-            var $image = $('.add.image'), $form = $image.find('form');
+            var $image = $('.add.image'), $form = $image.find('form'), saving = false;
 
             $image.find('input:file').change(function(e) {
+                if (saving) return;
                 $form.submit();
+                saving = true;
             });
 
             $image.find('.save').click(function(e) {
                 e.preventDefault();
+                if (saving) return;
                 $form.submit();
+                saving = true;
             })
         })();
 
@@ -108,10 +112,15 @@
                 }
             });
 
-            $('.file-save').click(function(e) {
-                e.preventDefault();
-                $(this).closest('form').submit();
-            })
+            (function () {
+                var saving = false;
+                $('.file-save').click(function (e) {
+                    e.preventDefault();
+                    if (saving) return;
+                    $(this).closest('form').submit();
+                    saving = true;
+                });
+            })();
         })();
 
     });

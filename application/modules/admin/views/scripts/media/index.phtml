@@ -5,13 +5,13 @@
 </ul>
 
 <div id="upload-box">
-    <div class="add image hide">
+    <div class="add image hide" style="display: none;">
         <form action="<?php echo $this->url(array('action' => 'save-image', 'controller' => 'media')) ?>" method="post" class="image" enctype="multipart/form-data">
             <div class="psevdo-upload-box">&nbsp;</div>
             <input name="image" class="file" type="file" size="36">
         </form>
     </div>
-    <div class="add vimeo hide">
+    <div class="add vimeo hide" style="display: none;">
         <form action="<?php echo $this->url(array('action' => 'save-vimeo', 'controller' => 'media')) ?>" method="post" class="vimeo">
             <input class="url" size="36" type="text" name="url" id="url">
             <button class="upload">&nbsp;</button>
@@ -50,16 +50,6 @@
     <?php endif; ?>
 </div>
 
-<div id="mediaModal" class="modal hide fade">
-    <div class="modal-header">
-        <button class="close" data-dismiss="modal">×</button>
-        <h3>&nbsp;</h3>
-    </div>
-    <div class="modal-body" align="center"></div>
-    <div class="modal-footer">
-        <a href="#" class="btn" data-dismiss="modal">Close</a>
-    </div>
-</div>
 <script type="text/html" id="vimeoPreview">
     <iframe src="http://player.vimeo.com/video/{{=it.vimeo_id}}?title=0&byline=0&portrait=0&color=3EFFDA" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 </script>

@@ -13,24 +13,34 @@ class Default_IndexController extends Zend_Controller_Action
      */
     protected $_mediaService;
 
+    /**
+     * @var \Entities\User
+     */
+    protected $_root;
+
     public function init()
     {
         $em = $this->_helper->Em();
         $this->_service = new Service_User($em);
         $this->_mediaService = new Service_Media($em);
+
+        $this->_root = $this->_service->getFirstRootUser();
+    }
+
+    public function preDispatch()
+    {
+        if ($this->_root) {
+            $this->view->assign(array(
+                'twitter' => $this->_root->getTwitter() ? sprintf('http://twitter.com/%s', $this->_root->getTwitter()) : '',
+                'facebook' => $this->_root->getFacebook() ? sprintf('http://facebook.com/%s', $this->_root->getFacebook()) : '',
+                'vimeo' => $this->_root->getVimeo() ? sprintf('http://vimeo.com/%s', $this->_root->getVimeo()) : ''
+            ));
+        }
     }
 
     public function indexAction()
     {
-        $root = $this->_service->getFirstRootUser();
         $this->view->images = $this->_mediaService->getAll();
-        if ($root) {
-            $this->view->assign(array(
-                'twitter' => $root->getTwitter() ? sprintf('http://twitter.com/%s', $root->getTwitter()) : '',
-                'facebook' => $root->getFacebook() ? sprintf('http://facebook.com/%s', $root->getFacebook()) : '',
-                'vimeo' => $root->getVimeo() ? sprintf('http://vimeo.com/%s', $root->getVimeo()) : ''
-            ));
-        }
     }
 
     public function contactAction()
