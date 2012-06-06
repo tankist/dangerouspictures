@@ -27,6 +27,11 @@
                         data-type="<?php echo ($image instanceof \Entities\Image) ? 'image' : 'vimeo' ?>" title="<?php echo $image->getTitle() ?>"
                         href="<?php echo $image->getLink() ?>"><img src="<?php echo $this->thumbnail($image, 's') ?>" width="91" height="52" alt="<?php echo $image->getDescription() ?>"></a></li>
                     <?php endforeach; ?>
+                    <?php if (count($this->images) < 5): ?>
+                    <?php for ($i=count($this->images); $i < 5; $i++ ): ?>
+                    <li><a href="#"><img src="/images/sample.png" alt="No image"></a></li>
+                    <?php endfor; ?>
+                    <?php endif; ?>
                 </ul>
             </div>
             <a class="slider-arrow next" href="#"><img src="images/slider_right.png" alt=""></a>
