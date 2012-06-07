@@ -83,7 +83,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->bootstrap('view');
         /** @var $view Zend_View_Abstract */
         $view = $this->getResource('view');
-        $view->getHelper('HeadTitle')->setSeparator(' - ')->headTitle('DangerousPictures');
+        $view->getHelper('HeadTitle')->setSeparator(' - ')->headTitle('DangerPictures');
     }
 
     protected function _initTwitter()
