@@ -1,1 +1,25 @@
-<?php echo $this->form->setAttrib('class', 'form-horizontal') ?>
+<div class="contact-form-wrapper">
+    <h1>Contact Form</h1>
+    <form action="#" method="post" id="contact-box">
+        <dl>
+            <dt><label for="fullname">Full Name</label></dt>
+            <dd><input id="fullname" type="text" name="fullname"></dd>
+        </dl>
+        <dl>
+            <dt><label for="email">Email</label></dt>
+            <dd><input id="email" type="text" name="email"></dd>
+        </dl>
+        <dl>
+            <dt><label for="subject">Subject</label></dt>
+            <dd><input id="subject" type="text" name="subject"></dd>
+        </dl>
+        <dl>
+            <dt style="padding-top:86px;"><label for="message">Message</label></dt>
+            <dd><textarea id="message" name="message"></textarea></dd>
+        </dl>
+        <dl>
+            <dt>&nbsp;</dt>
+            <dd><button>Submit</button></dd>
+        </dl>
+    </form>
+</div>

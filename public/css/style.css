@@ -89,14 +89,15 @@ h4 {}
 		border:1px solid #123047;
 		border-radius: 8px;
 		background-color:#092438;
-		height:48px;
+		height:42px;
 		font-size:34px;
 		color:#0a2a42;
 		text-align:center;
 		margin-bottom:9px;
+        padding-top: 6px;
 		font-family:Narkisim, Arial, Tahoma, Verdana;
 		}
-	#login input.active {
+	#login input:focus {
 		border:1px solid #4e5c63;
 		color:#b5b0a3;
 		}
@@ -244,8 +245,9 @@ h4 {}
     }
 .slider-box {
     float:right;
-    padding-top: 43px;
+    margin-top: 43px;
     overflow: hidden;
+    background: transparent url('../images/slider_bg.png') no-repeat;
     }
     .slider-arrow, .slider-wrapper {
         float: left;
@@ -269,13 +271,26 @@ h4 {}
             .slider-box li img {
                 border:1px solid #102b3f;
                 }
-        .slider-box li.slider-arrow {
-            background:none;
+        .slider-box a.slider-arrow {
+            width: 46px;
+            height: 59px;
+            display: block;
+            background:transparent url('../images/slider.png') no-repeat;
             padding-top:0px;
+            text-decoration: none;
             }
-            .slider-box li.slider-arrow img {
-                border:0px;
-                }
+            .slider-box a.slider-arrow.prev {
+                background-position: 10px 10px;
+            }
+            .slider-box a.slider-arrow.next {
+                background-position: -70px 10px;
+            }
+            .slider-box a.slider-arrow.prev:hover {
+                background-position: 10px -47px;
+            }
+            .slider-box a.slider-arrow.next:hover {
+                background-position: -70px -47px;
+            }
 .shadow-text {
     position:absolute;
     background: #0a2a42;
@@ -289,6 +304,7 @@ h4 {}
     font-family:Narkisim,  Arial, Tahoma, Verdana;
     line-height: 30px;
     letter-spacing:1px;
+    text-transform: uppercase;
     }
     .shadow-text h1 {
         color:#bb1e23;
@@ -336,22 +352,22 @@ h4 {}
         margin-right:8px;
         }
 .f_icon {
-    background:url('../images/f_icon.png');
+    background:url('../images/social_icons.png') 0 -58px no-repeat;
     }
 .t_icon {
-    background:url('../images/t_icon.png');
+    background:url('../images/social_icons.png') -38px -58px no-repeat;
     }
 .v_icon {
-    background:url('../images/v_icon.png');
+    background:url('../images/social_icons.png') -74px -58px no-repeat;
     }
 .f_icon:hover {
-    background:url('../images/f_icon_a.png');
+    background-position: 0 0;
     }
 .t_icon:hover {
-    background:url('../images/t_icon_a.png');
+    background-position: -38px 0;
     }
 .v_icon:hover {
-    background:url('../images/v_icon_a.png');
+    background-position: -74px 0;
     }
 .contact-form-wrapper {
     width:800px;
@@ -385,6 +401,7 @@ h4 {}
     #contact-box dd {
         width:310px;
         float:left;
+        margin-bottom: 1px;
         }
         #contact-box dd input, #contact-box dd textarea, #contact-box dd button {
             background: #031d30;
@@ -493,20 +510,20 @@ h4 {}
         opacity: 0;
         }
     #upload-box input.url {
-        width: 595px;
-        height: 40px;
+        width: 575px;
+        height: 45px;
         background: transparent url('../images/input_bg.png') no-repeat;
         border: none;
         color: #103F63;
         font-size: 15px;
         font-family: Narkisim,Arial,Tahoma,Verdana;
+        padding-left: 10px;
     }
     #upload-box button.upload {
         border: none;
         background: transparent url('../images/upload_btn.png') no-repeat;
         width: 115px;
-        height: 55px;
-        margin-left: -5px;
+        height: 41px;
     }
     .psevdo-upload-box {
         height: 45px;

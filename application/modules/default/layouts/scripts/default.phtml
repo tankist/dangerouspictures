@@ -13,10 +13,10 @@
 <body id="body-wrapper">
 <div id="home">
     <div class="header-box">
-        <div class="logo-box"><a href="#"><img src="images/mainlogo.png" alt="logo"></a></div>
+        <div class="logo-box"><a href="/"><img src="images/mainlogo.png" alt="logo"></a></div>
         <?php if (count($this->images)): ?>
         <div class="slider-box">
-            <a class="slider-arrow prev" href="#back"><img src="images/slider_left.png" alt=""></a>
+            <a class="slider-arrow prev" href="#prev"><span>&nbsp;</span></a>
             <div class="slider-wrapper">
                 <ul class="images">
                     <?php foreach ($this->images as /** @var \Entities\Image $image */ $image): ?>
@@ -34,7 +34,7 @@
                     <?php endif; ?>
                 </ul>
             </div>
-            <a class="slider-arrow next" href="#"><img src="images/slider_right.png" alt=""></a>
+            <a class="slider-arrow next" href="#next"><span>&nbsp;</span></a>
         </div>
         <?php endif; ?>
     </div>

@@ -50,9 +50,24 @@
                                 }
                             }
                     }
+                    $('.container')
+                        .mouseover(function() {
+                            $('.shadow-text:hidden').fadeIn();
+                            resetTick();
+                        })
+                        .mouseleave(function(e) {
+                            if ($(e.relatedTarget).is('.shadow-text')) return;
+                            $('.shadow-text').fadeOut();
+                            initTick();
+                        });
                     $('.shadow-text')
-                        .find('h1').html($a.attr('title')).wrap($('<a>', {href: $a.attr('href')})).end()
-                        .find('span').html($a.find('img').attr('alt')).end();
+                        .mouseleave(function(e) {
+                            if ($(e.relatedTarget).is('.container')) return;
+                            $(this).fadeOut();
+                        })
+                        .empty()
+                        .append($('<h1>').html($a.attr('title')).wrap($('<a>', {href: $a.attr('href')})))
+                        .append($('<span>').html($a.find('img').attr('alt')));
                 }
             }
 
